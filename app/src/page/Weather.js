@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FaWind, FaThermometerFull } from 'react-icons/fa';
 import WeatherIntrv from "../component/WeatherIntrv";
+// import {} from 'weaher.style';
 
 const api = {
   API_KEY: "4ce2d69a9a47b36734f7d73ad75c6785",
@@ -12,6 +13,7 @@ const api = {
 function Weather() {
 
   const realtimeDate = () => {
+    // date-fns moment
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",];
     const days = ["Sun", "Mon", "Tue", "Wed", "Tur", "Fri", "Sat"];
     const day = days[new Date().getDay()];
@@ -26,7 +28,7 @@ function Weather() {
   const url = `${api.BASE_URL}weather?q=${city}&appid=${api.API_KEY}`;
   const [weather, setWeather] = useState("");
 
-  useEffect(() => {
+  const aa = () => {
     axios.get(url)
     .then((response) => {
       const data = response.data;
@@ -38,12 +40,15 @@ function Weather() {
         humidity: data.main.humidity
       });
     });
+  }
+  useEffect(() => {
+    aa()
   }, [weather.temperature, weather.speed, weather.humidity, url])
 
   const iconUlr = `http://openweathermap.org/img/wn/${weather.icon}@2x.png`
   return (
     <>
-      <article>
+      <article style={{display:'11'}}>
         <DateDiv>{realtimeDate()}</DateDiv>
         <LocationDiv>{city}</LocationDiv>
         <WeatherDiv>{weather.main}</WeatherDiv>
@@ -67,7 +72,7 @@ function Weather() {
   );
 }
 export default Weather;
-
+// weather.style.js
 const LocationDiv = styled.div`
   color: white;
   padding: 10px 0;
