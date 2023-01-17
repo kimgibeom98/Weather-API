@@ -1,10 +1,11 @@
 import styled from "styled-components";
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FaWind, FaThermometerFull } from 'react-icons/fa';
+import WeatherIntrv from "../component/WeatherIntrv";
 
 const api = {
-  API_KEY: "40f1249c461da5a83fd2efe34754bdba",
+  API_KEY: "4ce2d69a9a47b36734f7d73ad75c6785",
   BASE_URL: "https://api.openweathermap.org/data/2.5/",
 };
 
@@ -24,19 +25,19 @@ function Weather() {
   const city = "Seoul";
   const url = `${api.BASE_URL}weather?q=${city}&appid=${api.API_KEY}`;
   const [weather, setWeather] = useState("");
-  // const [wthrIntrv, setwthrIntrv] = useState("");
 
-  axios.get(url).then((response) => {
-    const data = response.data;
-    console.log(data)
-    setWeather({
-      temperature: data.main.temp,
-      main: data.weather[0].main,
-      icon: data.weather[0].icon,
-      speed: data.wind.speed,
-      humidity: data.main.humidity
+  useEffect(() => {
+    axios.get(url).then((response) => {
+      const data = response.data;
+      setWeather({
+        temperature: data.main.temp,
+        main: data.weather[0].main,
+        icon: data.weather[0].icon,
+        speed: data.wind.speed,
+        humidity: data.main.humidity
+      });
     });
-  });
+  }, [weather.temperature, weather.speed, weather.humidity, url])
 
   const iconUlr = `http://openweathermap.org/img/wn/${weather.icon}@2x.png`
   return (
@@ -60,7 +61,7 @@ function Weather() {
           </RightInfo>
         </RightBox>
       </ContentArticle>
-
+      <WeatherIntrv city={city} api={api}/>
     </>
   );
 }
@@ -78,6 +79,7 @@ const ContentArticle = styled.article`
     display : flex;
     justify-content : space-between;
     align-items : center;
+    margin-bottom : 50px;
 `
 const RightInfo = styled.div`
 display : flex;
@@ -110,4 +112,3 @@ const InfoChild = styled.div`
 font-size: 15px;
 margin-left : 5px;
 `
-
