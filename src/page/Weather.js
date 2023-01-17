@@ -27,7 +27,8 @@ function Weather() {
   const [weather, setWeather] = useState("");
 
   useEffect(() => {
-    axios.get(url).then((response) => {
+    axios.get(url)
+    .then((response) => {
       const data = response.data;
       setWeather({
         temperature: data.main.temp,
