@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FaWind, FaThermometerFull } from 'react-icons/fa';
 import WeatherIntrv from "../component/WeatherIntrv";
-// import {} from 'weaher.style';
 
 
 
@@ -20,33 +19,34 @@ function Weather() {
 
     return `${day} ${date} ${month} ${year}`;
   };
+  const city = "Seoul"
+  const url = "http://localhost:4000/realtime";
 
-
-  const city = "Seoul";
-  const url = `${process.env.REACT_APP_BASE_URL}weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}`;
   const [weather, setWeather] = useState("");
-
-  const aa = () => {
-    axios.get(url)
-    .then((response) => {
-      const data = response.data;
+  const requestData = async () => {
+    try {
+      const response = await axios.get(url);
+      const data = await response.data;
       setWeather({
-        temperature: data.main.temp,
-        main: data.weather[0].main,
-        icon: data.weather[0].icon,
-        speed: data.wind.speed,
-        humidity: data.main.humidity
+        temperature: data[0].temperature,
+        main: data[0].main,
+        icon: data[0].icon,
+        speed: data[0].speed,
+        humidity: data[0].humidity
       });
-    });
+    } catch (err) {
+      console.log(err)
+    }
   }
+
   useEffect(() => {
-    aa()
+    requestData()
   }, [weather.temperature, weather.speed, weather.humidity, url])
 
   const iconUlr = `http://openweathermap.org/img/wn/${weather.icon}@2x.png`
   return (
     <>
-      <article style={{display:'11'}}>
+      <article style={{ display: '11' }}>
         <DateDiv>{realtimeDate()}</DateDiv>
         <LocationDiv>{city}</LocationDiv>
         <WeatherDiv>{weather.main}</WeatherDiv>
@@ -58,14 +58,14 @@ function Weather() {
           <RightInfo>
             <FaThermometerFull size="18" />
             <InfoChild>Humidity : {weather.humidity}%</InfoChild>
-            </RightInfo>
+          </RightInfo>
           <RightInfo>
             <FaWind size="18" />
             <InfoChild>Speed : {weather.speed}km/h</InfoChild>
           </RightInfo>
         </RightBox>
       </ContentArticle>
-
+      <WeatherIntrv />
     </>
   );
 }

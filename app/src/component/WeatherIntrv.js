@@ -1,40 +1,35 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
-const arr = [];
-const WeatherIntrv = ({ city, api }) => {
-  const url = `${api.BASE_URL}forecast?q=${city}&appid=${api.API_KEY}`;
-  useEffect(() => {
-    const reqApi = async () => {
+const WeatherIntrv = () => {
+  const url = "http://localhost:4000/timeinterval";
+  const [data, setData] = useState('');
+  
+    const requestData = async () => {
       try {
         const response = await axios.get(url);
-        const data = response.data.list
-        console.log(data)
-      } catch {
-
+        const data = await response.data;
+        setData(data[0])
+      } catch (err) {
+        console.log(err)
       }
     }
-    // axios.get(url)
-    // .then((response) => {
-    //   const data = response.data.list;
-    //   for (let i = 6; i < data.length; i++) {
-    //     arr.push(data[i])
-    //   }
-    // });
-  })
-  // console.log(arr)
+  useEffect(() => {
+    requestData();
+  },[])
+  console.log(data)
   return (
-
     <article>
       <Titlefivedays>5 Day / 3 Hour Forecast</Titlefivedays>
       <ListUl>
-        {arr.map((items) => (
-          <li>
-            <div>{items.dt_txt}</div>
-            <div><img src={`http://openweathermap.org/img/wn/${items.weather.icon}@2x.png`} alt="날씨 아이콘"/></div>
-            <div>{(items.main.temp - 273.15).toFixed()}℃</div>
-          </li>
+        {data.map((items) => (
+          <ListLi>
+            <div>{items.dt}</div>
+            <div><img src={`http://openweathermap.org/img/wn/${items.icon}@2x.png`} alt="날씨 아이콘" /></div>
+            <div>{items.main}</div>
+            <div>{(items.temperature - 273.15).toFixed()}℃</div>
+          </ListLi>
         ))}
       </ListUl>
     </article>
@@ -55,5 +50,9 @@ const Titlefivedays = styled.div`
 const ListUl = styled.ul`
   display : flex;
   flex-wrap : wrap
+`
+const ListLi = styled.li`
+ > div
+  color : white;
 `
 
