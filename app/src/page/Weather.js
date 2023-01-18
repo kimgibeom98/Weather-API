@@ -22,7 +22,7 @@ function Weather() {
   const city = "Seoul"
   const url = "http://localhost:4000/realtime";
 
-  const [weather, setWeather] = useState("");
+  const [weather, setWeather] = useState([]);
   const requestData = async () => {
     try {
       const response = await axios.get(url);

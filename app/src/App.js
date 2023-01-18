@@ -16,7 +16,7 @@ function App() {
 export default App;
 const ContentSection = styled.section`
   width: 600px;
-  height: 600px;
+  height: 710px;
   align-items: center;
   justify-content: center;
   background-color: #106096;
