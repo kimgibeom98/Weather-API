@@ -5,10 +5,7 @@ import { FaWind, FaThermometerFull } from 'react-icons/fa';
 import WeatherIntrv from "../component/WeatherIntrv";
 // import {} from 'weaher.style';
 
-const api = {
-  API_KEY: "4ce2d69a9a47b36734f7d73ad75c6785",
-  BASE_URL: "https://api.openweathermap.org/data/2.5/",
-};
+
 
 function Weather() {
 
@@ -24,8 +21,9 @@ function Weather() {
     return `${day} ${date} ${month} ${year}`;
   };
 
+
   const city = "Seoul";
-  const url = `${api.BASE_URL}weather?q=${city}&appid=${api.API_KEY}`;
+  const url = `${process.env.REACT_APP_BASE_URL}weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}`;
   const [weather, setWeather] = useState("");
 
   const aa = () => {
@@ -67,7 +65,7 @@ function Weather() {
           </RightInfo>
         </RightBox>
       </ContentArticle>
-      <WeatherIntrv city={city} api={api}/>
+
     </>
   );
 }

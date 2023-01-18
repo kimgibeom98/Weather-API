@@ -14,7 +14,7 @@ let data = [];
 function Apidata() {
   const getData = async () => {
     const city = "Seoul";
-    const url = `${process.env.BASE_URL}weather?q=${city}&appid=${process.env.API_KEY}`;
+    const url = `${process.env.REACT_APP_BASE_URL}weather?q=${city}&appid=${process.env.REACT_APP_API_KEY}`;
 
     const response = await axios.get(url);
     data = response.data;
