@@ -10,18 +10,18 @@ const getData = async (apiUrl) => {
     console.log(err)
   }
 }
-const resultData = await getData(`https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=40f1249c461da5a83fd2efe34754bdba`);
-const intervalData = await getData(`https://api.openweathermap.org/data/2.5/forecast?q=Seoul&appid=40f1249c461da5a83fd2efe34754bdba`);
+const seoulWeatherInfo = await getData(`https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=40f1249c461da5a83fd2efe34754bdba`);
+const hourlyWeather = await getData(`https://api.openweathermap.org/data/2.5/forecast?q=Seoul&appid=40f1249c461da5a83fd2efe34754bdba`);
 
 const postData = async () => {
   try {
     const data = {
-      id : resultData.weather[0].id,
-      temperature: resultData.main.temp,
-      main: resultData.weather[0].main,
-      icon: resultData.weather[0].icon,
-      speed: resultData.wind.speed,
-      humidity: resultData.main.humidity
+      id : seoulWeatherInfo.weather[0].id,
+      temperature: seoulWeatherInfo.main.temp,
+      main: seoulWeatherInfo.weather[0].main,
+      icon: seoulWeatherInfo.weather[0].icon,
+      speed: seoulWeatherInfo.wind.speed,
+      humidity: seoulWeatherInfo.main.humidity
     }
     const response = await axios.post('http://localhost:4000/realtime', data);
     return response;
@@ -31,15 +31,15 @@ const postData = async () => {
   }
 }
 
-const postIntervalData =  async () => {
+const posthourlyWeather =  async () => {
   try {
     const data = [];
-    for(let i = 6; i < intervalData.list.length; i++){
+    for(let i = 6; i < hourlyWeather.list.length; i++){
       data.push({
-        dt : intervalData.list[i].dt_txt,
-        temperature : intervalData.list[i].main.temp,
-        main : intervalData.list[i].weather[0].main,
-        icon : intervalData.list[i].weather[0].icon
+        dt : hourlyWeather.list[i].dt_txt,
+        temperature : hourlyWeather.list[i].main.temp,
+        main : hourlyWeather.list[i].weather[0].main,
+        icon : hourlyWeather.list[i].weather[0].icon
       })
     }
     const response = await axios.post('http://localhost:4000/timeinterval', data);
@@ -52,4 +52,4 @@ const postIntervalData =  async () => {
 
 
 postData();
-postIntervalData();
+posthourlyWeather();
