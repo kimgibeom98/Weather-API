@@ -10,6 +10,7 @@ const WeatherIntrv = () => {
       try {
         const response = await axios.get(url);
         const data = await response.data;
+        console.log(data)
         setData(data[0])
       } catch (err) {
         console.log(err)
@@ -18,22 +19,22 @@ const WeatherIntrv = () => {
   useEffect(() => {
     requestData();
   },[])
-  console.log(data)
-  return (
-    <article>
-      <Titlefivedays>5 Day / 3 Hour Forecast</Titlefivedays>
-      <ListUl>
-        {data.map((items) => (
-          <ListLi>
-            <div>{items.dt}</div>
-            <div><img src={`http://openweathermap.org/img/wn/${items.icon}@2x.png`} alt="날씨 아이콘" /></div>
-            <div>{items.main}</div>
-            <div>{(items.temperature - 273.15).toFixed()}℃</div>
-          </ListLi>
-        ))}
-      </ListUl>
-    </article>
-  )
+
+  // return (
+    // <article>
+    //   <Titlefivedays>5 Day / 3 Hour Forecast</Titlefivedays>
+    //   <ListUl>
+    //     {data.map((items) => (
+    //       <ListLi>
+    //         <div>{items.dt}</div>
+    //         <div><img src={`http://openweathermap.org/img/wn/${items.icon}@2x.png`} alt="날씨 아이콘" /></div>
+    //         <div>{items.main}</div>
+    //         <div>{(items.temperature - 273.15).toFixed()}℃</div>
+    //       </ListLi>
+    //     ))}
+    //   </ListUl>
+    // </article>
+  // )
 }
 
 export default WeatherIntrv;
