@@ -1,0 +1,28 @@
+{
+  "realtime": [
+    {
+      "temperature": 275.44,
+      "main": "Clouds",
+      "icon": "04d",
+      "speed": 2.57,
+      "humidity": 48,
+      "id": 1
+    }
+  ],
+  "timeinterval": [
+    {
+      "dt": "2023-01-23 03:00:00",
+      "temperature": 274.72,
+      "main": "Clouds",
+      "icon": "04d",
+      "id": 1
+    },
+    {
+      "dt": "2023-01-23 06:00:00",
+      "temperature": 275.53,
+      "main": "Clouds",
+      "icon": "04d",
+      "id": 2
+    }
+  ]
+}
