@@ -11,7 +11,7 @@ const url = {
 
 const serverUrl = {
   serverRealtime: 'http://localhost:4000/realtime',
-  serverTimeinterval: 'http://localhost:4000/realtime'
+  serverTimeinterval: 'http://localhost:4000/timeinterval'
 }
 
 
@@ -30,8 +30,7 @@ const hourlyWeather = await getData(url.timeinterval);
 
 const delData = async () => {
   try {
-    const response = await axios.delete('http://localhost:4000/timeinterval',);
-    return response.data;
+    await axios.delete('http://localhost:4000/timeinterval',);
   } catch (err) {
   }
 }
@@ -45,27 +44,29 @@ const postData = async () => {
       speed: seoulWeatherInfo.wind.speed,
       humidity: seoulWeatherInfo.main.humidity
     }
-    const response = await axios.post(serverUrl.serverTimeinterval, data);
-    return response;
+    await axios.post(serverUrl.serverRealtime, data);
 
   } catch (err) {
   }
 }
 
 const posthourlyWeather = async () => {
+  const data = [];
+  for (let i = 6; i < hourlyWeather.list.length; i++) {
+    data.push({
+      dt: hourlyWeather.list[i].dt_txt,
+      temperature: hourlyWeather.list[i].main.temp,
+      main: hourlyWeather.list[i].weather[0].main,
+      icon: hourlyWeather.list[i].weather[0].icon
+    })
+  }
   try {
-    for (let i = 6; i < hourlyWeather.list.length; i++) {
-        await axios.post('http://localhost:4000/timeinterval', {
-        dt: hourlyWeather.list[i].dt_txt,
-        temperature: hourlyWeather.list[i].main.temp,
-        main: hourlyWeather.list[i].weather[0].main,
-        icon: hourlyWeather.list[i].weather[0].icon
-      });
-    }
+    data.map(async (items) => {
+       await axios.post(serverUrl.serverTimeinterval,items);
+    })
   } catch (err) {
   }
 }
-
 // delData();
 // 
 postData();
