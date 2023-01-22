@@ -9,7 +9,6 @@ import WeatherIntrv from "../component/WeatherIntrv";
 function Weather() {
 
   const realtimeDate = () => {
-    // date-fns moment
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",];
     const days = ["Sun", "Mon", "Tue", "Wed", "Tur", "Fri", "Sat"];
     const day = days[new Date().getDay()];
@@ -70,7 +69,7 @@ function Weather() {
   );
 }
 export default Weather;
-// weather.style.js
+
 const LocationDiv = styled.div`
   color: white;
   padding: 10px 0;

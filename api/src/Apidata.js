@@ -1,4 +1,8 @@
 import axios from "axios"
+// import dotenv from "dotenv";
+// dotenv.config();
+
+console.log(process.env.API_KEY)
 
 const url = {
   realtime : 'https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=40f1249c461da5a83fd2efe34754bdba',
@@ -20,24 +24,21 @@ const getData = async (apiUrl) => {
     console.log(err)
   }
 }
+
 const seoulWeatherInfo = await getData(url.realtime);
 const hourlyWeather = await getData(url.timeinterval);
 
-const delData = async (apiUrl) => {
+const delData = async () => {
   try{
-    const response = await axios.delete('http://localhost:4000/realtime');
+    const response = await axios.delete('http://localhost:4000/timeinterval');
     return response.data;
   }catch (err) {
     console.log(err)
   }
 }
 
-// delData(seoulWeatherInfo);
-// delData(serverUrl.serverTimeinterval);
-
 const postData = async () => {
   try {
-    // json파일에 값이 있고없고 판별하는 if문 있으면 del불러오기 없으면 바로 post 
     const data = {
       id : seoulWeatherInfo.weather[0].id,
       temperature: seoulWeatherInfo.main.temp,
@@ -46,6 +47,7 @@ const postData = async () => {
       speed: seoulWeatherInfo.wind.speed,
       humidity: seoulWeatherInfo.main.humidity
     }
+    delData();
     const response = await axios.post(serverUrl.serverTimeinterval, data);
     return response;
 
@@ -73,6 +75,7 @@ const posthourlyWeather =  async () => {
   }
 }
 
+// delData();
 
 // postData();
 // posthourlyWeather() ;

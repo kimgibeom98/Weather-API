@@ -1,12 +1,12 @@
 {
   "realtime": [
     {
-      "id": 800,
-      "temperature": 269.31,
-      "main": "Clear",
-      "icon": "01n",
+      "id": 600,
+      "temperature": 273.44,
+      "main": "Snow",
+      "icon": "13d",
       "speed": 1.54,
-      "humidity": 55
+      "humidity": 60
     }
   ],
   "timeinterval": [

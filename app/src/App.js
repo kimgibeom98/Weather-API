@@ -1,15 +1,13 @@
-import React, { useState } from "react";
 import "./App.css";
 import styled from "styled-components";
 import Weather from "./page/Weather";
 
 
 function App() {
-  const [cold, setCold] = useState();
 
   return (
-    <ContentSection className="App" cold={cold}>
-      <Weather setCold={setCold} />
+    <ContentSection className="App">
+      <Weather />
     </ContentSection>
   );
 }
