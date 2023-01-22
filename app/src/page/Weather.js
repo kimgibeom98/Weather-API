@@ -19,7 +19,7 @@ function Weather() {
     return `${day} ${date} ${month} ${year}`;
   };
   const city = "Seoul"
-  const url = "http://localhost:4000/realtime";
+  const url = "http://localhost:4001/realtime";
 
   const [weather, setWeather] = useState([]);
   const requestData = async () => {

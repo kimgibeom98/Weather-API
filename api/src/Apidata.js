@@ -10,8 +10,8 @@ const url = {
 }
 
 const serverUrl = {
-  serverRealtime: 'http://localhost:4000/realtime',
-  serverTimeinterval: 'http://localhost:4000/timeinterval'
+  serverRealtime: 'http://localhost:4001/realtime',
+  serverTimeinterval: 'http://localhost:4001/timeinterval'
 }
 
 
@@ -30,7 +30,7 @@ const hourlyWeather = await getData(url.timeinterval);
 
 const delData = async () => {
   try {
-    await axios.delete('http://localhost:4000/timeinterval',);
+    await axios.delete('http://localhost:4001/timeinterval',);
   } catch (err) {
   }
 }
@@ -62,9 +62,10 @@ const posthourlyWeather = async () => {
   }
   try {
     data.map(async (items) => {
-       await axios.post(serverUrl.serverTimeinterval,items);
+       await axios.post(serverUrl.serverTimeinterval, items);
     })
   } catch (err) {
+    
   }
 }
 // delData();

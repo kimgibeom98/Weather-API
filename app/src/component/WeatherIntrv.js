@@ -3,14 +3,14 @@ import axios from "axios";
 import styled from "styled-components";
 
 const WeatherIntrv = () => {
-  const url = "http://localhost:4000/timeinterval";
+  const url = "http://localhost:4001/timeinterval";
   const [data, setData] = useState([]);
  
   const requestData = async () => {
     try {
       const response = await axios.get(url);
       const data = await response.data;
-      setData(data[0])
+      setData(data)
     } catch (err) {
       console.log(err)
     }

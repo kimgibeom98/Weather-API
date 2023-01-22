@@ -1,11 +1,11 @@
 {
   "realtime": [
     {
-      "temperature": 274.81,
+      "temperature": 275.77,
       "main": "Clouds",
       "icon": "04d",
-      "speed": 0.91,
-      "humidity": 62,
+      "speed": 2.57,
+      "humidity": 47,
       "id": 1
     }
   ],
