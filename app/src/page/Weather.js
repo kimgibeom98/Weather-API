@@ -55,7 +55,7 @@ function Weather() {
         <img src={iconUlr} alt="날씨 아이콘" />
         <TemperatureDiv>{(weather.temperature - 273.15).toFixed()}℃</TemperatureDiv>
         <RightBox>
-          <RightInfo>
+          <RightInfo style={{marginBottom : "5px"}}>
             <FaThermometerFull size="18" />
             <InfoChild>Humidity : {weather.humidity}%</InfoChild>
           </RightInfo>

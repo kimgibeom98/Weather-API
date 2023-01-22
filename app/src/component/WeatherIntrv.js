@@ -23,16 +23,16 @@ const WeatherIntrv = () => {
   return (
     <article>
       <Titlefivedays>5 Day / 3 Hour Forecast</Titlefivedays>
-      <ListUl>
-        {data.map((items) => (
-          <ListLi style={{ marginBottom: "20px" }} >
-            <div style={{fontWeight: "700"}}>{items.dt}</div>
-            <div><img src={`http://openweathermap.org/img/wn/${items.icon}@2x.png`} alt="날씨 아이콘" /></div>
-            <div>{items.main}</div>
-            <div>{(items.temperature - 273.15).toFixed()}℃</div>
-          </ListLi>
-        ))}
-      </ListUl>
+        <ListUl>
+          {data.map((items) => (
+            <ListLi style={{ marginBottom: "20px" }} >
+              <div style={{fontWeight: "700"}}>{items.dt}</div>
+              <div><img src={`http://openweathermap.org/img/wn/${items.icon}@2x.png`} alt="날씨 아이콘" /></div>
+              <div>{items.main}</div>
+              <div>{(items.temperature - 273.15).toFixed()}℃</div>
+            </ListLi>
+          ))}
+        </ListUl>
     </article>
   )
 }
@@ -53,6 +53,8 @@ const ListUl = styled.ul`
   flex-wrap : wrap;
   padding: 0;
   justify-content : space-between;
+  overflow-y : scroll;
+  height : 360px;
 `
 const ListLi = styled.li` > div {
   color : white;
