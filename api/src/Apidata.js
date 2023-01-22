@@ -1,12 +1,14 @@
-import dotenv from "dotenv";
+import * as dotenv from 'dotenv';
 dotenv.config();
 
 import axios from "axios"
 
 
+const city = 'Seoul';
+
 const url = {
-  realtime : 'https://api.openweathermap.org/data/2.5/weather?q=Seoul&appid=40f1249c461da5a83fd2efe34754bdba',
-  timeinterval : 'https://api.openweathermap.org/data/2.5/forecast?q=Seoul&appid=40f1249c461da5a83fd2efe34754bdba'
+  realtime : `${process.env.BASE_URL}weather?q=${city}&appid=${process.env.API_KEY}`,
+  timeinterval : `${process.env.BASE_URL}forecast?q=${city}&appid=${process.env.API_KEY}`
 }
 
 const serverUrl = {
@@ -79,6 +81,6 @@ const posthourlyWeather =  async () => {
 }
 
 // delData();
-
+// 
 postData();
 posthourlyWeather() ;
