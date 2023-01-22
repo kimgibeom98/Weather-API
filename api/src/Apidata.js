@@ -30,28 +30,31 @@ const hourlyWeather = await getData(url.timeinterval);
 
 const delData = async () => {
   try {
-    await axios.delete('http://localhost:4001/timeinterval',);
+    for (let i = 1; i < hourlyWeather.list.length; i++) {
+      await axios.delete(`http://localhost:4001/timeinterval/${i}`);
+    }
   } catch (err) {
+    console.log(err)
   }
 }
 
 const postData = async () => {
   try {
-    const data = {
+    const RealtimeData = {
       temperature: seoulWeatherInfo.main.temp,
       main: seoulWeatherInfo.weather[0].main,
       icon: seoulWeatherInfo.weather[0].icon,
       speed: seoulWeatherInfo.wind.speed,
       humidity: seoulWeatherInfo.main.humidity
     }
-    await axios.post(serverUrl.serverRealtime, data);
+    await axios.post(serverUrl.serverRealtime, RealtimeData);
 
   } catch (err) {
   }
 }
 
 const posthourlyWeather = async () => {
-  const data = [];
+  const TimeintervalData = [];
   for (let i = 6; i < hourlyWeather.list.length; i++) {
     data.push({
       dt: hourlyWeather.list[i].dt_txt,
@@ -61,14 +64,14 @@ const posthourlyWeather = async () => {
     })
   }
   try {
-    data.map(async (items) => {
-       await axios.post(serverUrl.serverTimeinterval, items);
+    TimeintervalData.map(async (items) => {
+      await axios.post(serverUrl.serverTimeinterval, items);
     })
   } catch (err) {
-    
+
   }
 }
-// delData();
-// 
-postData();
-posthourlyWeather();
+delData();
+
+// postData();
+// posthourlyWeather();

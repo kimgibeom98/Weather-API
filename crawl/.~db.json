@@ -11,13 +11,6 @@
   ],
   "timeinterval": [
     {
-      "dt": "2023-01-23 06:00:00",
-      "temperature": 275.53,
-      "main": "Clouds",
-      "icon": "04d",
-      "id": 2
-    },
-    {
       "dt": "2023-01-23 09:00:00",
       "temperature": 274.06,
       "main": "Clouds",
