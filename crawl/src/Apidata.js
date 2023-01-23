@@ -3,17 +3,14 @@ dotenv.config();
 import axios from "axios"
 
 const city = 'Seoul';
+const host = "http://localhost:4001";
+// let seoulWeatherInfo;
+// let hourlyWeather ;
 
 const url = {
   realtime: `${process.env.BASE_URL}weather?q=${city}&appid=${process.env.API_KEY}`,
   timeinterval: `${process.env.BASE_URL}forecast?q=${city}&appid=${process.env.API_KEY}`
 }
-
-const serverUrl = {
-  serverRealtime: 'http://localhost:4001/realtime',
-  serverTimeinterval: 'http://localhost:4001/timeinterval'
-}
-
 
 const getData = async (apiUrl) => {
   try {
@@ -28,15 +25,12 @@ const getData = async (apiUrl) => {
 const seoulWeatherInfo = await getData(url.realtime);
 const hourlyWeather = await getData(url.timeinterval);
 
-const delData = async () => {
-  try {
-    for (let i = 1; i < hourlyWeather.list.length; i++) {
-      await axios.delete(`http://localhost:4001/timeinterval/${i}`);
-    }
-  } catch (err) {
-    console.log(err)
-  }
-}
+// const intiatlize = async() => {
+//   seoulWeatherInfo = await getData(url.realtime);
+//   hourlyWeather = await getData(url.timeinterval);
+// }
+
+// intiatlize();
 
 const postData = async () => {
   try {
@@ -47,7 +41,7 @@ const postData = async () => {
       speed: seoulWeatherInfo.wind.speed,
       humidity: seoulWeatherInfo.main.humidity
     }
-    await axios.post(serverUrl.serverRealtime, RealtimeData);
+    await axios.put(`${host}/realtime/1`, RealtimeData);
 
   } catch (err) {
   }
@@ -56,7 +50,7 @@ const postData = async () => {
 const posthourlyWeather = async () => {
   const TimeintervalData = [];
   for (let i = 6; i < hourlyWeather.list.length; i++) {
-    data.push({
+    TimeintervalData.push({
       dt: hourlyWeather.list[i].dt_txt,
       temperature: hourlyWeather.list[i].main.temp,
       main: hourlyWeather.list[i].weather[0].main,
@@ -64,14 +58,14 @@ const posthourlyWeather = async () => {
     })
   }
   try {
-    TimeintervalData.map(async (items) => {
-      await axios.post(serverUrl.serverTimeinterval, items);
+    TimeintervalData.map(async (items,index) => {
+      await axios.put(`${host}/timeinterval/${index + 1}`, items);
     })
   } catch (err) {
 
   }
 }
-delData();
 
-// postData();
-// posthourlyWeather();
+
+postData();
+posthourlyWeather();

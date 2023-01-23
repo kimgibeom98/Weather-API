@@ -1,8 +1,10 @@
 {
+  "type": "module",
   "scripts": {
-    "start": "json-server --watch db.json --port 4001"
+    "start": "node ./src/Apidata.js"
   },
   "dependencies": {
-    "json-server": "^0.17.1"
+    "axios": "^1.2.3",
+    "dotenv": "^16.0.3"
   }
 }

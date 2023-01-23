@@ -4,13 +4,12 @@ import styled from "styled-components";
 
 const WeatherIntrv = () => {
   const url = "http://localhost:4001/timeinterval";
-  const [data, setData] = useState([]);
+  const [value, setValue] = useState([]);
  
   const requestData = async () => {
     try {
-      const response = await axios.get(url);
-      const data = await response.data;
-      setData(data)
+      const {data} = await axios.get(url);
+      setValue(data)
     } catch (err) {
       console.log(err)
     }
@@ -24,9 +23,9 @@ const WeatherIntrv = () => {
     <article>
       <Titlefivedays>5 Day / 3 Hour Forecast</Titlefivedays>
         <ListUl>
-          {data.map((items) => (
-            <ListLi style={{ marginBottom: "20px" }} >
-              <div style={{fontWeight: "700"}}>{items.dt}</div>
+          {value.map((items) => (
+            <ListLi key={items.id} style={{ marginBottom: 20 }} >
+              <div style={{fontWeight: 700}}>{items.dt}</div>
               <div><img src={`http://openweathermap.org/img/wn/${items.icon}@2x.png`} alt="날씨 아이콘" /></div>
               <div>{items.main}</div>
               <div>{(items.temperature - 273.15).toFixed()}℃</div>

@@ -24,8 +24,7 @@ function Weather() {
   const [weather, setWeather] = useState([]);
   const requestData = async () => {
     try {
-      const response = await axios.get(url);
-      const data = await response.data;
+      const {data} = await axios.get(url);
       setWeather({
         temperature: data[0].temperature,
         main: data[0].main,
@@ -45,7 +44,7 @@ function Weather() {
   const iconUlr = `http://openweathermap.org/img/wn/${weather.icon}@2x.png`
   return (
     <>
-      <article style={{ display: '11' }}>
+      <article>
         <DateDiv>{realtimeDate()}</DateDiv>
         <LocationDiv>{city}</LocationDiv>
         <WeatherDiv>{weather.main}</WeatherDiv>
@@ -54,12 +53,12 @@ function Weather() {
         <img src={iconUlr} alt="날씨 아이콘" />
         <TemperatureDiv>{(weather.temperature - 273.15).toFixed()}℃</TemperatureDiv>
         <RightBox>
-          <RightInfo style={{marginBottom : "5px"}}>
-            <FaThermometerFull size="18" />
+          <RightInfo style={{marginBottom : 5}}>
+            <FaThermometerFull size={18} />
             <InfoChild>Humidity : {weather.humidity}%</InfoChild>
           </RightInfo>
           <RightInfo>
-            <FaWind size="18" />
+            <FaWind size={18} />
             <InfoChild>Speed : {weather.speed}km/h</InfoChild>
           </RightInfo>
         </RightBox>
