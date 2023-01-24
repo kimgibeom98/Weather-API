@@ -24,15 +24,12 @@ const getData = async (apiUrl) => {
 
 const seoulWeatherInfo = await getData(url.realtime);
 const hourlyWeather = await getData(url.timeinterval);
-
 // const intiatlize = async() => {
 //   seoulWeatherInfo = await getData(url.realtime);
 //   hourlyWeather = await getData(url.timeinterval);
 // }
 
-// intiatlize();
-
-const postData = async () => {
+const putData = async () => {
   try {
     const RealtimeData = {
       temperature: seoulWeatherInfo.main.temp,
@@ -47,9 +44,9 @@ const postData = async () => {
   }
 }
 
-const posthourlyWeather = async () => {
+const puthourlyWeather = async () => {
   const TimeintervalData = [];
-  for (let i = 6; i < hourlyWeather.list.length; i++) {
+  for (let i = 4; i < hourlyWeather.list.length; i++) {
     TimeintervalData.push({
       dt: hourlyWeather.list[i].dt_txt,
       temperature: hourlyWeather.list[i].main.temp,
@@ -67,5 +64,5 @@ const posthourlyWeather = async () => {
 }
 
 
-postData();
-posthourlyWeather();
+putData();
+puthourlyWeather();
