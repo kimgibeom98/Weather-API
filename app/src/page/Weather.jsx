@@ -113,4 +113,5 @@ const WeatherDiv = styled.div`
 const InfoChild = styled.div`
 font-size: 15px;
 margin-left : 5px;
+font-weight : 500;
 `
