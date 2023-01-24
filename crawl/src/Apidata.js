@@ -45,19 +45,16 @@ const putData = async () => {
 }
 
 const puthourlyWeather = async () => {
-  const TimeintervalData = [];
-  for (let i = 4; i < hourlyWeather.list.length; i++) {
-    TimeintervalData.push({
-      dt: hourlyWeather.list[i].dt_txt,
-      temperature: hourlyWeather.list[i].main.temp,
-      main: hourlyWeather.list[i].weather[0].main,
-      icon: hourlyWeather.list[i].weather[0].icon
-    })
-  }
+  const TimeintervalData = hourlyWeather.list.map((items, index) => ({
+    dt: hourlyWeather.list[index].dt_txt,
+    temperature: hourlyWeather.list[index].main.temp,
+    main: hourlyWeather.list[index].weather[0].main,
+    icon: hourlyWeather.list[index].weather[0].icon
+  }));
   try {
-    TimeintervalData.map(async (items,index) => {
+    Promise.all(TimeintervalData.map(async (items,index) => {
       await axios.put(`${host}/timeinterval/${index + 1}`, items);
-    })
+    }))
   } catch (err) {
 
   }
