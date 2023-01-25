@@ -18,6 +18,7 @@ const realtimeGetdata = async () => {
     const data = await response.data;
     putData(data)
   } catch (err) {
+    console.log(err)
   }
 } 
 
@@ -25,9 +26,9 @@ const timeintervalGetdata = async () => {
   try {
     const response = await axios.get(url.timeinterval);
     const data = await response.data;
-    console.log(data.list.length)
     puthourlyWeather(data)
   } catch (err) {
+    console.log(err)
   }
 } 
 
@@ -43,6 +44,7 @@ const putData = async (data) => {
     await axios.put(`${host}/realtime/1`, realtimeData);
 
   } catch (err) {
+    console.log(err)
   }
 }
 
@@ -58,12 +60,12 @@ const puthourlyWeather = async (data) => {
       await axios.put(`${host}/timeinterval/${index + 1}`, items);
     }))
   } catch (err) {
-
+    console.log(err)
   }
 }
 
 
-schedule.scheduleJob('* 0 * * * *', function () {
+// schedule.scheduleJob('0 30 * * * *', function () {
   timeintervalGetdata();
   realtimeGetdata();
-});
+// });

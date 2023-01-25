@@ -1,3 +1,7 @@
+body {
+    font-family: 'Roboto';
+}
+#root{display: flex; align-items: center; height: 100vh;}
 ul::-webkit-scrollbar {
     width: 5px; 
 }

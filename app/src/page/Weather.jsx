@@ -6,7 +6,7 @@ import WeatherIntrv from "../component/WeatherIntrv";
 
 
 
-function Weather() {
+function Weather({setCold}) {
 
   const realtimeDate = () => {
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",];
@@ -18,10 +18,12 @@ function Weather() {
 
     return `${day} ${date} ${month} ${year}`;
   };
+  const [weather, setWeather] = useState([]);
+
   const city = "Seoul"
   const url = "http://localhost:4001/realtime";
+  const iconUlr = `http://openweathermap.org/img/wn/${weather.icon}@2x.png`
 
-  const [weather, setWeather] = useState([]);
   const requestData = async () => {
     try {
       const {data} = await axios.get(url);
@@ -33,15 +35,14 @@ function Weather() {
         humidity: data[0].humidity
       });
     } catch (err) {
-      console.log(err)
+      alert('날씨 데이터를 불러오는데 실패하였습니다.')
     }
   }
 
   useEffect(() => {
     requestData()
-  }, [weather.temperature, weather.speed, weather.humidity, url])
-
-  const iconUlr = `http://openweathermap.org/img/wn/${weather.icon}@2x.png`
+    setCold(weather.main === 'Clear');
+  }, [weather.temperature, weather.speed, weather.humidity, url, setCold, weather.main])
   return (
     <>
       <article>
@@ -108,6 +109,7 @@ const WeatherDiv = styled.div`
   color: white;
   font-size: 20px;
   text-align : center;
+  font-weight : 700;
 `;
 
 const InfoChild = styled.div`
