@@ -3,14 +3,14 @@ import styled, {css} from "styled-components";
 import { useState } from "react";
 
 import Weather from "./page/Weather";
+import { useCallback } from "react";
 
 
 function App() {
-  const [cold, setCold] = useState();
-  console.log(cold)
+  const [cold, setCold] = useState('');
   return (
     <ContentSection className="App" cold={cold}>
-      <Weather setCold={setCold} />
+      <Weather setCold={setCold}/>
     </ContentSection>
   );
 }

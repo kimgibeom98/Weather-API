@@ -2,13 +2,14 @@ import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { FaWind, FaThermometerFull } from 'react-icons/fa';
-import WeatherIntrv from "../component/WeatherIntrv";
+import WeatherInfos from "../component/WeatherInfos";
 
 
 
 function Weather({setCold}) {
-
-  const realtimeDate = () => {
+  const [weather, setWeather] = useState([]);
+  
+  const getRealtimeDate = () => {
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",];
     const days = ["Sun", "Mon", "Tue", "Wed", "Tur", "Fri", "Sat"];
     const day = days[new Date().getDay()];
@@ -18,7 +19,7 @@ function Weather({setCold}) {
 
     return `${day} ${date} ${month} ${year}`;
   };
-  const [weather, setWeather] = useState([]);
+
 
   const city = "Seoul"
   const url = "http://localhost:4001/realtime";
@@ -46,7 +47,7 @@ function Weather({setCold}) {
   return (
     <>
       <article>
-        <DateDiv>{realtimeDate()}</DateDiv>
+        <DateDiv>{getRealtimeDate()}</DateDiv>
         <LocationDiv>{city}</LocationDiv>
         <WeatherDiv>{weather.main}</WeatherDiv>
       </article>
@@ -64,7 +65,7 @@ function Weather({setCold}) {
           </RightInfo>
         </RightBox>
       </ContentArticle>
-      <WeatherIntrv />
+      <WeatherInfos />
     </>
   );
 }

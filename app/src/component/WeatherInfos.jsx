@@ -2,7 +2,8 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import styled from "styled-components";
 
-const WeatherIntrv = () => {
+import WeatherContent from "./WeatherContent"
+const WeatherInfos = () => {
   const url = "http://localhost:4001/timeinterval";
   const [value, setValue] = useState([]);
  
@@ -22,21 +23,18 @@ const WeatherIntrv = () => {
   return (
     <article>
       <Titlefivedays>5 Day / 3 Hour Forecast</Titlefivedays>
-        <ListUl>
+        <WeatherContainer>
           {value.map((items) => (
-            <ListLi key={items.id} style={{marginBottom: 20, width: "33.33%"}} >
-              <div>{items.dt.substr(0,16)}</div>
-              <div><img src={`http://openweathermap.org/img/wn/${items.icon}@2x.png`} alt="날씨 아이콘" /></div>
-              <div>{items.main}</div>
-              <div>{(items.temperature - 273.15).toFixed()}℃</div>
-            </ListLi>
+            <ContainerList key={items.id} style={{marginBottom: 20, width: "33.33%"}} >
+              <WeatherContent items={items}/>
+            </ContainerList>
           ))}
-        </ListUl>
+        </WeatherContainer>
     </article>
   )
 }
 
-export default WeatherIntrv;
+export default WeatherInfos;
 
 const Titlefivedays = styled.div`
   border-top: 2px solid #fff;
@@ -47,7 +45,7 @@ const Titlefivedays = styled.div`
   font-weight : 700;
 `
 
-const ListUl = styled.ul`
+const WeatherContainer = styled.ul`
   display : flex;
   flex-wrap : wrap;
   padding: 0;
@@ -55,7 +53,7 @@ const ListUl = styled.ul`
   overflow-y : scroll;
   height : 360px;
 `
-const ListLi = styled.li` > div {
+const ContainerList = styled.li` > div {
   color : white;
   text-align : center;
   font-size : 15px;
