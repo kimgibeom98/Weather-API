@@ -7,6 +7,14 @@ dotenv.config();
 const city = 'Seoul';
 const host = "http://localhost:4001";
 
+const getCurrentTime = () => {
+  const month = String(new Date().getMonth() + 1).padStart(2, "0");
+  const date = String(new Date().getDate()).padStart(2, "0");
+  const Hours = String(new Date().getHours()).padStart(2, "0");
+  const Minutes = String(new Date().getMinutes()).padStart(2, "0");
+  return `${month}월 ${date}일 ${Hours}:${Minutes}`
+}
+
 const url = {
   realtime: `${process.env.BASE_URL}weather?q=${city}&appid=${process.env.API_KEY}`,
   timeinterval: `${process.env.BASE_URL}forecast?q=${city}&appid=${process.env.API_KEY}`
@@ -32,6 +40,7 @@ const timeintervalGetdata = async () => {
   }
 } 
 
+
 const putData = async (data) => {
   try {
     const realtimeData = {
@@ -39,7 +48,8 @@ const putData = async (data) => {
       main: data.weather[0].main,
       icon: data.weather[0].icon,
       speed: data.wind.speed,
-      humidity: data.main.humidity
+      humidity: data.main.humidity,
+      currenttime : getCurrentTime()
     }
     await axios.put(`${host}/realtime/1`, realtimeData);
 

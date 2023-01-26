@@ -12,7 +12,6 @@ function App() {
   const [health, setHealth] = useState(false);
 
   useEffect(() => {
-    console.log(`${process.env.REACT_APP_HOST_URL}/realtime`)
     axios
       .all([axios.get(`${process.env.REACT_APP_HOST_URL}/realtime`), axios.get(`${process.env.REACT_APP_HOST_URL}/timeinterval`)])
       .then(
@@ -22,6 +21,7 @@ function App() {
       )
       .catch((err) => console.log(err))
   }, [])
+
   return (
       <ContentSection className="App" cold={cold}>
         {health ? <Weather setCold={setCold} health={health} /> : <ErrorPage />}
