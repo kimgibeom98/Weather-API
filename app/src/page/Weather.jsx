@@ -1,6 +1,7 @@
-import styled from "styled-components";
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import moment from 'moment';
+import styled from "styled-components";
 import { FaWind, FaThermometerFull } from 'react-icons/fa';
 import WeatherInfos from "../component/WeatherInfos";
 
@@ -8,18 +9,6 @@ import WeatherInfos from "../component/WeatherInfos";
 
 function Weather({setCold,health}) {
   const [weather, setWeather] = useState([]);
-  console.log(health)
-  
-  const getRealtimeDate = () => {
-    const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",];
-    const days = ["Sun", "Mon", "Tue", "Wed", "Tur", "Fri", "Sat"];
-    const day = days[new Date().getDay()];
-    const month = months[new Date().getMonth()];
-    const year = new Date().getFullYear();
-    const date = new Date().getDate();
-
-    return `${day} ${date} ${month} ${year}`;
-  };
 
   const city = "Seoul"
   const iconUlr = `http://openweathermap.org/img/wn/${weather.icon}@2x.png`
@@ -46,7 +35,7 @@ function Weather({setCold,health}) {
   return (
     <>
       <article>
-        <DateDiv>{getRealtimeDate()}</DateDiv>
+        <DateDiv>{moment().format('YYYY-MM-DD')} {moment().format('dd')}</DateDiv>
         <LocationDiv>{city}</LocationDiv>
         <WeatherDiv>{weather.main}</WeatherDiv>
       </article>

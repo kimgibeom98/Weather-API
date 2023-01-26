@@ -1,9 +1,9 @@
-import "./App.css";
-import styled, { css } from "styled-components";
 import { useState, useEffect } from "react";
-
-import Weather from "./page/Weather";
 import axios from "axios";
+import styled, { css } from "styled-components";
+
+import "./App.css";
+import Weather from "./page/Weather";
 import ErrorPage from "./component/ErrorPage";
 
 
