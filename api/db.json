@@ -1,28 +1,28 @@
 {
   "realtime": [
     {
-      "temperature": 267.81,
-      "main": "Clouds",
-      "icon": "04n",
-      "speed": 1.21,
-      "humidity": 65,
-      "currenttime": "01월 26일 22:18",
+      "temperature": 267.9,
+      "main": "Clear",
+      "icon": "01n",
+      "speed": 1.54,
+      "humidity": 80,
+      "currenttime": "01/26 22:01",
       "id": 1
     }
   ],
   "timeinterval": [
     {
       "dt": "2023-01-26 15:00:00",
-      "temperature": 268.1,
+      "temperature": 268.16,
       "main": "Clouds",
-      "icon": "04n",
+      "icon": "02n",
       "id": 1
     },
     {
       "dt": "2023-01-26 18:00:00",
-      "temperature": 267.74,
+      "temperature": 267.77,
       "main": "Clouds",
-      "icon": "04n",
+      "icon": "02n",
       "id": 2
     },
     {

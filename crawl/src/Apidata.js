@@ -1,4 +1,5 @@
 import * as dotenv from 'dotenv';
+import moment from 'moment';
 import axios from "axios"
 import schedule from 'node-schedule'
 
@@ -6,14 +7,6 @@ dotenv.config();
 
 const city = 'Seoul';
 const host = "http://localhost:4001";
-
-const getCurrentTime = () => {
-  const month = String(new Date().getMonth() + 1).padStart(2, "0");
-  const date = String(new Date().getDate()).padStart(2, "0");
-  const Hours = String(new Date().getHours()).padStart(2, "0");
-  const Minutes = String(new Date().getMinutes()).padStart(2, "0");
-  return `${month}월 ${date}일 ${Hours}:${Minutes}`
-}
 
 const url = {
   realtime: `${process.env.BASE_URL}weather?q=${city}&appid=${process.env.API_KEY}`,
@@ -49,7 +42,7 @@ const putData = async (data) => {
       icon: data.weather[0].icon,
       speed: data.wind.speed,
       humidity: data.main.humidity,
-      currenttime : getCurrentTime()
+      currenttime : moment().format('MM/DD HH:MM')
     }
     await axios.put(`${host}/realtime/1`, realtimeData);
 
