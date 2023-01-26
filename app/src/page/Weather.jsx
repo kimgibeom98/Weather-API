@@ -6,8 +6,9 @@ import WeatherInfos from "../component/WeatherInfos";
 
 
 
-function Weather({setCold}) {
+function Weather({setCold,health}) {
   const [weather, setWeather] = useState([]);
+  console.log(health)
   
   const getRealtimeDate = () => {
     const months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec",];
@@ -20,14 +21,12 @@ function Weather({setCold}) {
     return `${day} ${date} ${month} ${year}`;
   };
 
-
   const city = "Seoul"
-  const url = "http://localhost:4001/realtime";
   const iconUlr = `http://openweathermap.org/img/wn/${weather.icon}@2x.png`
 
   const requestData = async () => {
     try {
-      const {data} = await axios.get(url);
+      const {data} = await axios.get(`${process.env.REACT_APP_HOST_URL}/realtime`);
       setWeather({
         temperature: data[0].temperature,
         main: data[0].main,
@@ -41,9 +40,9 @@ function Weather({setCold}) {
   }
 
   useEffect(() => {
-    requestData()
+    if(health === true) requestData()
     setCold(weather.main === 'Clear');
-  }, [weather.temperature, weather.speed, weather.humidity, url, setCold, weather.main])
+  }, [weather.temperature, weather.speed, weather.humidity, setCold, weather.main, health])
   return (
     <>
       <article>
@@ -52,7 +51,7 @@ function Weather({setCold}) {
         <WeatherDiv>{weather.main}</WeatherDiv>
       </article>
       <ContentArticle>
-        <img src={iconUlr} alt="날씨 아이콘" />
+          <img src={iconUlr} alt="날씨 아이콘" />
         <TemperatureDiv>{(weather.temperature - 273.15).toFixed()}℃</TemperatureDiv>
         <RightBox>
           <RightInfo style={{marginBottom : 5}}>
@@ -65,7 +64,7 @@ function Weather({setCold}) {
           </RightInfo>
         </RightBox>
       </ContentArticle>
-      <WeatherInfos />
+      <WeatherInfos health={health}/>
     </>
   );
 }

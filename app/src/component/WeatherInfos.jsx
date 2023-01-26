@@ -3,13 +3,13 @@ import axios from "axios";
 import styled from "styled-components";
 
 import WeatherContent from "./WeatherContent"
-const WeatherInfos = () => {
-  const url = "http://localhost:4001/timeinterval";
+
+const WeatherInfos = ({health}) => {
   const [value, setValue] = useState([]);
  
   const requestData =  async () => {
     try {
-      const {data} = await axios.get(url);
+      const {data} = await axios.get(`${process.env.REACT_APP_HOST_URL}/timeinterval`);
       setValue(data)
     } catch (err) {
       alert('날씨 데이터를 불러오는데 실패하였습니다.')
@@ -17,8 +17,8 @@ const WeatherInfos = () => {
   }
   
   useEffect(() => {
-    requestData();
-  }, [])
+    if(health === true) requestData();
+  }, [health])
 
   return (
     <article>
