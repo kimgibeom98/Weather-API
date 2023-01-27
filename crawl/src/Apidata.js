@@ -6,7 +6,6 @@ import schedule from 'node-schedule'
 dotenv.config();
 
 const city = 'Seoul';
-const host = "http://localhost:4001";
 
 const url = {
   realtime: `${process.env.BASE_URL}weather?q=${city}&appid=${process.env.API_KEY}`,
@@ -44,7 +43,7 @@ const putData = async (data) => {
       humidity: data.main.humidity,
       currenttime : moment().format('MM/DD HH:MM')
     }
-    await axios.put(`${host}/realtime/1`, realtimeData);
+    await axios.put(`${process.env.HOST_KEY}/realtime/1`, realtimeData);
 
   } catch (err) {
     console.log(err)
@@ -60,7 +59,7 @@ const puthourlyWeather = async (data) => {
   }));
   try {
     Promise.all(timeintervalData.map(async (items, index) => {
-      await axios.put(`${host}/timeinterval/${index + 1}`, items);
+      await axios.put(`${process.env.HOST_KEY}/timeinterval/${index + 1}`, items);
     }))
   } catch (err) {
     console.log(err)
@@ -68,7 +67,7 @@ const puthourlyWeather = async (data) => {
 }
 
 
-// schedule.scheduleJob('0 30 * * * *', function () {
+schedule.scheduleJob('0 0 * * * *', function () {
   timeintervalGetdata();
   realtimeGetdata();
-// });
+});

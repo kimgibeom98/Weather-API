@@ -51,7 +51,7 @@ const WeatherContainer = styled.ul`
   padding: 0;
   justify-content : space-between;
   overflow-y : scroll;
-  height : 360px;
+  height : 340px;
 `
 const ContainerList = styled.li` > div {
   color : white;

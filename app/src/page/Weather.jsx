@@ -7,7 +7,7 @@ import WeatherInfos from "../component/WeatherInfos";
 
 
 
-function Weather({setCold,health}) {
+function Weather({ setCold, health }) {
   const [weather, setWeather] = useState([]);
 
   const city = "Seoul"
@@ -15,35 +15,36 @@ function Weather({setCold,health}) {
 
   const requestData = async () => {
     try {
-      const {data} = await axios.get(`${process.env.REACT_APP_HOST_URL}/realtime`);
+      const { data } = await axios.get(`${process.env.REACT_APP_HOST_URL}/realtime`);
       setWeather({
         temperature: data[0].temperature,
         main: data[0].main,
         icon: data[0].icon,
         speed: data[0].speed,
-        humidity: data[0].humidity
+        humidity: data[0].humidity,
+        currenttime: data[0].currenttime
       });
     } catch (err) {
       alert('날씨 데이터를 불러오는데 실패하였습니다.')
     }
   }
-
   useEffect(() => {
-    if(health === true) requestData()
+    if (health === true) requestData()
     setCold(weather.main === 'Clear');
   }, [weather.temperature, weather.speed, weather.humidity, setCold, weather.main, health])
   return (
     <>
       <article>
+        <SynchronizationTime>Last sync date : {weather.currenttime}</SynchronizationTime>
         <DateDiv>{moment().format('YYYY-MM-DD')} {moment().format('dd')}</DateDiv>
         <LocationDiv>{city}</LocationDiv>
         <WeatherDiv>{weather.main}</WeatherDiv>
       </article>
       <ContentArticle>
-          <img src={iconUlr} alt="날씨 아이콘" />
+        <img src={iconUlr} alt="날씨 아이콘" />
         <TemperatureDiv>{(weather.temperature - 273.15).toFixed()}℃</TemperatureDiv>
         <RightBox>
-          <RightInfo style={{marginBottom : 5}}>
+          <RightInfo style={{ marginBottom: 5 }}>
             <FaThermometerFull size={18} />
             <InfoChild>Humidity : {weather.humidity}%</InfoChild>
           </RightInfo>
@@ -53,11 +54,16 @@ function Weather({setCold,health}) {
           </RightInfo>
         </RightBox>
       </ContentArticle>
-      <WeatherInfos health={health}/>
+      <WeatherInfos health={health} />
     </>
   );
 }
 export default Weather;
+
+const SynchronizationTime = styled.div`
+  color : yellow;
+  padding-top : 20px;
+`
 
 const LocationDiv = styled.div`
   color: white;
