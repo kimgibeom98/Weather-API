@@ -22,7 +22,10 @@ const WeatherInfos = ({health}) => {
 
   return (
     <article>
-      <Titlefivedays>5 Day / 3 Hour Forecast</Titlefivedays>
+      <Titlefivedays>
+        5 Day / 3 Hour Forecast
+        <ChangeView>change</ChangeView>
+        </Titlefivedays>
         <WeatherContainer>
           {value.map((items) => (
             <ContainerList key={items.id} style={{marginBottom: 20, width: "33.33%"}} >
@@ -39,10 +42,14 @@ export default WeatherInfos;
 const Titlefivedays = styled.div`
   border-top: 2px solid #fff;
   border-bottom: 2px solid #fff;
-  padding : 10px 5px;
+  padding : 0 5px;
   color : white;
   box-sizing : border-box;
   font-weight : 700;
+  display : flex;
+  justify-content : space-between;
+  align-items : center;
+  height : 40px;
 `
 
 const WeatherContainer = styled.ul`
@@ -58,4 +65,14 @@ const ContainerList = styled.li` > div {
   text-align : center;
   font-size : 15px;
 }
+`
+
+const ChangeView = styled.button`
+  border : 1px solid white;
+  background : white;
+  color : black;
+  cursor : pointer;
+  height : 25px;
+  font-weight : 700;
+  font-family: 'Roboto';
 `
