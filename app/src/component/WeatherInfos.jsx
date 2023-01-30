@@ -6,6 +6,7 @@ import WeatherContent from "./WeatherContent"
 
 const WeatherInfos = ({health}) => {
   const [value, setValue] = useState([]);
+  const [view, setView] =useState('yview');
  
   const requestData =  async () => {
     try {
@@ -15,24 +16,38 @@ const WeatherInfos = ({health}) => {
       alert('날씨 데이터를 불러오는데 실패하였습니다.')
     }
   }
+
+  const changeListview = () => {
+    view === "yview" ? setView("xview") : setView("yview")
+  }
   
   useEffect(() => {
     if(health === true) requestData();
   }, [health])
-
+console.log(view)
   return (
     <article>
       <Titlefivedays>
         5 Day / 3 Hour Forecast
-        <ChangeView>change</ChangeView>
+        <ChangeView onClick={changeListview}>change view</ChangeView>
         </Titlefivedays>
-        <WeatherContainer>
-          {value.map((items) => (
-            <ContainerList key={items.id} style={{marginBottom: 20, width: "33.33%"}} >
-              <WeatherContent items={items}/>
-            </ContainerList>
-          ))}
-        </WeatherContainer>
+        {view === "yview" ?
+          <YweatherContainer>
+            {value.map((items) => (
+              <ContainerList key={items.id} style={{marginBottom: 20, width: "33.33%"}} >
+                <WeatherContent items={items}/>
+              </ContainerList>
+            ))}
+          </YweatherContainer>
+          :
+          <XweatherContainer>
+            {value.map((items) => (
+              <ContainerList key={items.id} style={{marginBottom: 20, width: "33.33%"}} >
+                <WeatherContent items={items}/>
+              </ContainerList>
+            ))}
+          </XweatherContainer>
+        }
     </article>
   )
 }
@@ -52,13 +67,20 @@ const Titlefivedays = styled.div`
   height : 40px;
 `
 
-const WeatherContainer = styled.ul`
+const YweatherContainer = styled.ul`
   display : flex;
   flex-wrap : wrap;
   padding: 0;
   justify-content : space-between;
   overflow-y : scroll;
-  height : 340px;
+  max-height : 340px;
+`
+
+const XweatherContainer = styled.ul`
+  display : flex;
+  flex-wrap : nowrap;
+  overflow-x : auto;
+  padding : 0;
 `
 const ContainerList = styled.li` > div {
   color : white;
@@ -68,11 +90,12 @@ const ContainerList = styled.li` > div {
 `
 
 const ChangeView = styled.button`
-  border : 1px solid white;
-  background : white;
-  color : black;
+  border : none;
+  height : 40px;
+  background : rgba(0,0,0,0.5);
+  color : #e5e5e5;
   cursor : pointer;
-  height : 25px;
-  font-weight : 700;
+  max-height : 25px;
   font-family: 'Roboto';
+  border-radius : 5px;
 `

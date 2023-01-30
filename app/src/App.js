@@ -16,6 +16,7 @@ function App() {
       .all([axios.get(`${process.env.REACT_APP_HOST_URL}/realtime`), axios.get(`${process.env.REACT_APP_HOST_URL}/timeinterval`)])
       .then(
         axios.spread((res1, res2) => {
+          console.log(res1.data, res2.data)
           res1.data.length >= 1 && res2.data.length >= 1 ? setHealth(true) : setHealth(false)
         })
       )
@@ -31,7 +32,6 @@ function App() {
 export default App;
 const ContentSection = styled.section`
   width: 600px;
-  height: 710px;
   align-items: center;
   justify-content: center;
   background-color: #325281;

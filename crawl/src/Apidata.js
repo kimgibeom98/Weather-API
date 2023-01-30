@@ -67,7 +67,7 @@ const puthourlyWeather = async (data) => {
 }
 
 
-schedule.scheduleJob('0 0 * * * *', function () {
+// schedule.scheduleJob('0 0 * * * *', function () {
   timeintervalGetdata();
   realtimeGetdata();
-});
+// });

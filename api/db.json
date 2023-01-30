@@ -1,294 +1,294 @@
 {
   "realtime": [
     {
-      "temperature": 267.9,
+      "temperature": 269.81,
       "main": "Clear",
       "icon": "01n",
-      "speed": 1.54,
-      "humidity": 80,
-      "currenttime": "01/26 22:01",
+      "speed": 0.73,
+      "humidity": 67,
+      "currenttime": "01/30 21:01",
       "id": 1
     }
   ],
   "timeinterval": [
     {
-      "dt": "2023-01-26 15:00:00",
-      "temperature": 268.16,
-      "main": "Clouds",
-      "icon": "02n",
+      "dt": "2023-01-30 15:00:00",
+      "temperature": 270.26,
+      "main": "Clear",
+      "icon": "01n",
       "id": 1
     },
     {
-      "dt": "2023-01-26 18:00:00",
-      "temperature": 267.77,
-      "main": "Clouds",
-      "icon": "02n",
+      "dt": "2023-01-30 18:00:00",
+      "temperature": 270.24,
+      "main": "Clear",
+      "icon": "01n",
       "id": 2
     },
     {
-      "dt": "2023-01-26 21:00:00",
-      "temperature": 266.39,
-      "main": "Clear",
-      "icon": "01n",
+      "dt": "2023-01-30 21:00:00",
+      "temperature": 269.86,
+      "main": "Clouds",
+      "icon": "02n",
       "id": 3
     },
     {
-      "dt": "2023-01-27 00:00:00",
-      "temperature": 265.76,
-      "main": "Clear",
-      "icon": "01d",
+      "dt": "2023-01-31 00:00:00",
+      "temperature": 270.5,
+      "main": "Clouds",
+      "icon": "02d",
       "id": 4
     },
     {
-      "dt": "2023-01-27 03:00:00",
-      "temperature": 267.41,
-      "main": "Clear",
-      "icon": "01d",
+      "dt": "2023-01-31 03:00:00",
+      "temperature": 275.12,
+      "main": "Clouds",
+      "icon": "03d",
       "id": 5
     },
     {
-      "dt": "2023-01-27 06:00:00",
-      "temperature": 268.03,
-      "main": "Clear",
-      "icon": "01d",
+      "dt": "2023-01-31 06:00:00",
+      "temperature": 277.14,
+      "main": "Clouds",
+      "icon": "03d",
       "id": 6
     },
     {
-      "dt": "2023-01-27 09:00:00",
-      "temperature": 266.11,
-      "main": "Clear",
-      "icon": "01n",
+      "dt": "2023-01-31 09:00:00",
+      "temperature": 276.17,
+      "main": "Clouds",
+      "icon": "04n",
       "id": 7
     },
     {
-      "dt": "2023-01-27 12:00:00",
-      "temperature": 264.87,
-      "main": "Clear",
-      "icon": "01n",
+      "dt": "2023-01-31 12:00:00",
+      "temperature": 274.41,
+      "main": "Clouds",
+      "icon": "04n",
       "id": 8
     },
     {
-      "dt": "2023-01-27 15:00:00",
-      "temperature": 264.39,
-      "main": "Clear",
-      "icon": "01n",
+      "dt": "2023-01-31 15:00:00",
+      "temperature": 273.81,
+      "main": "Clouds",
+      "icon": "02n",
       "id": 9
     },
     {
-      "dt": "2023-01-27 18:00:00",
-      "temperature": 263.97,
+      "dt": "2023-01-31 18:00:00",
+      "temperature": 273.36,
       "main": "Clear",
       "icon": "01n",
       "id": 10
     },
     {
-      "dt": "2023-01-27 21:00:00",
-      "temperature": 263.9,
+      "dt": "2023-01-31 21:00:00",
+      "temperature": 272.91,
       "main": "Clear",
       "icon": "01n",
       "id": 11
     },
     {
-      "dt": "2023-01-28 00:00:00",
-      "temperature": 264.94,
+      "dt": "2023-02-01 00:00:00",
+      "temperature": 273.15,
       "main": "Clear",
       "icon": "01d",
       "id": 12
     },
     {
-      "dt": "2023-01-28 03:00:00",
-      "temperature": 267.9,
+      "dt": "2023-02-01 03:00:00",
+      "temperature": 274.02,
       "main": "Clouds",
-      "icon": "04d",
+      "icon": "03d",
       "id": 13
     },
     {
-      "dt": "2023-01-28 06:00:00",
-      "temperature": 269.89,
+      "dt": "2023-02-01 06:00:00",
+      "temperature": 272.84,
       "main": "Clouds",
-      "icon": "04d",
+      "icon": "03d",
       "id": 14
     },
     {
-      "dt": "2023-01-28 09:00:00",
-      "temperature": 269.38,
-      "main": "Clear",
-      "icon": "01n",
+      "dt": "2023-02-01 09:00:00",
+      "temperature": 270.86,
+      "main": "Clouds",
+      "icon": "03n",
       "id": 15
     },
     {
-      "dt": "2023-01-28 12:00:00",
-      "temperature": 268.14,
-      "main": "Clear",
-      "icon": "01n",
+      "dt": "2023-02-01 12:00:00",
+      "temperature": 270.4,
+      "main": "Clouds",
+      "icon": "03n",
       "id": 16
     },
     {
-      "dt": "2023-01-28 15:00:00",
-      "temperature": 267.06,
-      "main": "Clear",
-      "icon": "01n",
+      "dt": "2023-02-01 15:00:00",
+      "temperature": 270.11,
+      "main": "Clouds",
+      "icon": "04n",
       "id": 17
     },
     {
-      "dt": "2023-01-28 18:00:00",
-      "temperature": 266.86,
-      "main": "Clear",
-      "icon": "01n",
+      "dt": "2023-02-01 18:00:00",
+      "temperature": 269.61,
+      "main": "Clouds",
+      "icon": "04n",
       "id": 18
     },
     {
-      "dt": "2023-01-28 21:00:00",
-      "temperature": 266.66,
-      "main": "Clear",
-      "icon": "01n",
+      "dt": "2023-02-01 21:00:00",
+      "temperature": 268.83,
+      "main": "Clouds",
+      "icon": "04n",
       "id": 19
     },
     {
-      "dt": "2023-01-29 00:00:00",
-      "temperature": 267.63,
+      "dt": "2023-02-02 00:00:00",
+      "temperature": 268.75,
       "main": "Clouds",
-      "icon": "02d",
+      "icon": "04d",
       "id": 20
     },
     {
-      "dt": "2023-01-29 03:00:00",
-      "temperature": 270.86,
+      "dt": "2023-02-02 03:00:00",
+      "temperature": 270.84,
       "main": "Clouds",
       "icon": "04d",
       "id": 21
     },
     {
-      "dt": "2023-01-29 06:00:00",
-      "temperature": 274.64,
+      "dt": "2023-02-02 06:00:00",
+      "temperature": 271.93,
       "main": "Clouds",
       "icon": "04d",
       "id": 22
     },
     {
-      "dt": "2023-01-29 09:00:00",
-      "temperature": 273.89,
+      "dt": "2023-02-02 09:00:00",
+      "temperature": 271.36,
       "main": "Clouds",
       "icon": "04n",
       "id": 23
     },
     {
-      "dt": "2023-01-29 12:00:00",
-      "temperature": 273.09,
+      "dt": "2023-02-02 12:00:00",
+      "temperature": 270.79,
       "main": "Clouds",
       "icon": "04n",
       "id": 24
     },
     {
-      "dt": "2023-01-29 15:00:00",
-      "temperature": 271.29,
+      "dt": "2023-02-02 15:00:00",
+      "temperature": 270.44,
       "main": "Clouds",
-      "icon": "02n",
+      "icon": "04n",
       "id": 25
     },
     {
-      "dt": "2023-01-29 18:00:00",
-      "temperature": 269.87,
+      "dt": "2023-02-02 18:00:00",
+      "temperature": 269.85,
       "main": "Clouds",
-      "icon": "02n",
+      "icon": "04n",
       "id": 26
     },
     {
-      "dt": "2023-01-29 21:00:00",
-      "temperature": 269.29,
-      "main": "Clear",
-      "icon": "01n",
+      "dt": "2023-02-02 21:00:00",
+      "temperature": 269.61,
+      "main": "Clouds",
+      "icon": "04n",
       "id": 27
     },
     {
-      "dt": "2023-01-30 00:00:00",
-      "temperature": 269.63,
-      "main": "Clear",
-      "icon": "01d",
+      "dt": "2023-02-03 00:00:00",
+      "temperature": 269.92,
+      "main": "Clouds",
+      "icon": "04d",
       "id": 28
     },
     {
-      "dt": "2023-01-30 03:00:00",
-      "temperature": 272.2,
-      "main": "Clear",
-      "icon": "01d",
+      "dt": "2023-02-03 03:00:00",
+      "temperature": 271.16,
+      "main": "Snow",
+      "icon": "13d",
       "id": 29
     },
     {
-      "dt": "2023-01-30 06:00:00",
-      "temperature": 273.89,
-      "main": "Clear",
-      "icon": "01d",
+      "dt": "2023-02-03 06:00:00",
+      "temperature": 272.52,
+      "main": "Clouds",
+      "icon": "04d",
       "id": 30
     },
     {
-      "dt": "2023-01-30 09:00:00",
-      "temperature": 272.58,
-      "main": "Clear",
-      "icon": "01n",
+      "dt": "2023-02-03 09:00:00",
+      "temperature": 271.83,
+      "main": "Clouds",
+      "icon": "04n",
       "id": 31
     },
     {
-      "dt": "2023-01-30 12:00:00",
-      "temperature": 271.88,
-      "main": "Clear",
-      "icon": "01n",
+      "dt": "2023-02-03 12:00:00",
+      "temperature": 271.47,
+      "main": "Clouds",
+      "icon": "03n",
       "id": 32
     },
     {
-      "dt": "2023-01-30 15:00:00",
-      "temperature": 271.26,
-      "main": "Clear",
-      "icon": "01n",
+      "dt": "2023-02-03 15:00:00",
+      "temperature": 271.07,
+      "main": "Clouds",
+      "icon": "04n",
       "id": 33
     },
     {
-      "dt": "2023-01-30 18:00:00",
-      "temperature": 270.62,
-      "main": "Clear",
-      "icon": "01n",
+      "dt": "2023-02-03 18:00:00",
+      "temperature": 270.46,
+      "main": "Clouds",
+      "icon": "03n",
       "id": 34
     },
     {
-      "dt": "2023-01-30 21:00:00",
+      "dt": "2023-02-03 21:00:00",
       "temperature": 270.03,
       "main": "Clear",
       "icon": "01n",
       "id": 35
     },
     {
-      "dt": "2023-01-31 00:00:00",
-      "temperature": 270.53,
+      "dt": "2023-02-04 00:00:00",
+      "temperature": 270.75,
       "main": "Clear",
       "icon": "01d",
       "id": 36
     },
     {
-      "dt": "2023-01-31 03:00:00",
-      "temperature": 273.71,
+      "dt": "2023-02-04 03:00:00",
+      "temperature": 273.68,
       "main": "Clear",
       "icon": "01d",
       "id": 37
     },
     {
-      "dt": "2023-01-31 06:00:00",
-      "temperature": 274.95,
-      "main": "Clouds",
-      "icon": "03d",
+      "dt": "2023-02-04 06:00:00",
+      "temperature": 275.06,
+      "main": "Clear",
+      "icon": "01d",
       "id": 38
     },
     {
-      "dt": "2023-01-31 09:00:00",
-      "temperature": 273.71,
-      "main": "Clouds",
-      "icon": "04n",
+      "dt": "2023-02-04 09:00:00",
+      "temperature": 273.32,
+      "main": "Clear",
+      "icon": "01n",
       "id": 39
     },
     {
-      "dt": "2023-01-31 12:00:00",
-      "temperature": 273.17,
-      "main": "Clouds",
-      "icon": "04n",
+      "dt": "2023-02-04 12:00:00",
+      "temperature": 272.77,
+      "main": "Clear",
+      "icon": "01n",
       "id": 40
     }
   ]
