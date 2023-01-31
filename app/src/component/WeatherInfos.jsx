@@ -42,7 +42,7 @@ const WeatherInfos = ({health, language}) => {
           :
           <XweatherContainer>
             {value.map((items) => (
-              <ContainerList key={items.id} style={{marginBottom: 20, width: "33.33%"}} >
+              <ContainerList key={items.id} style={{marginLeft: 10, marginRight : 10, width: "33.33%"}} >
                 <WeatherContent items={items} language={language}/>
               </ContainerList>
             ))}
