@@ -6,6 +6,8 @@ import { FaWind, FaThermometerFull } from 'react-icons/fa';
 
 import { WeatherDescKo } from "../component/WeatherDescKo ";
 import WeatherInfos from "../component/WeatherInfos";
+import 'moment/locale/ko';
+
 
 
 
@@ -57,7 +59,8 @@ function Weather({ setCold, health }) {
     setCold(weather.main === 'Clear');
   }, [weather.temperature, weather.speed, weather.humidity, setCold, weather.main, health])
   const test = localStorage.getItem('languageValue');
-  console.log(test)
+
+  language === "ENG" ? moment.locale('en') : moment.locale('ko');
   return (
     <>
       <article>
@@ -65,7 +68,7 @@ function Weather({ setCold, health }) {
           <SynchronizationTime>{language === "ENG" ? "Last sync date :" : "마지막 동기화 날짜 :" } {weather.currenttime}</SynchronizationTime>
           <ControlLanguage value={language} onChange={setLanguage} optionList={optionList} />
         </TitleBox>
-        <DateDiv>{moment().format('YYYY-MM-DD')} {moment().format('dd')}</DateDiv>
+        <DateDiv>{moment().format('YYYY-MM-DD dddd')}</DateDiv>
         <LocationDiv>{language === "ENG" ? city.ENG : city.KOR}</LocationDiv>
         <WeatherDiv>{language === "ENG" ? weather.main : Object.values(WeatherDescKo.filter((it) => it[weather.idnum])[0])}</WeatherDiv>
       </article>
