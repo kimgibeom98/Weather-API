@@ -44,7 +44,7 @@ const putData = async (data) => {
       humidity: data.main.humidity,
       currenttime : moment().format('MM/DD HH:MM')
     }
-    await axios.put(`${process.env.HOST_KEY}/realtime/1`, realtimeData);
+    await axios.put(`${process.env.HOST_KEY}/weatherinfo/1`, realtimeData);
 
   } catch (err) {
     console.log(err)
@@ -61,7 +61,7 @@ const puthourlyWeather = async (data) => {
   }));
   try {
     Promise.all(timeintervalData.map(async (items, index) => {
-      await axios.put(`${process.env.HOST_KEY}/timeinterval/${index + 1}`, items);
+      await axios.put(`${process.env.HOST_KEY}/weatherlist/${index + 1}`, items);
     }))
   } catch (err) {
     console.log(err)
