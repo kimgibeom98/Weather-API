@@ -4,7 +4,7 @@ import styled from "styled-components";
 
 import WeatherContent from "./WeatherContent"
 
-const WeatherInfos = ({health}) => {
+const WeatherInfos = ({health, language}) => {
   const [value, setValue] = useState([]);
   const [view, setView] =useState('yview');
  
@@ -24,18 +24,18 @@ const WeatherInfos = ({health}) => {
   useEffect(() => {
     if(health === true) requestData();
   }, [health])
-console.log(view)
+
   return (
     <article>
       <Titlefivedays>
-        5 Day / 3 Hour Forecast
-        <ChangeView onClick={changeListview}>change view</ChangeView>
+        {language === "ENG" ? "5 Day / 3 Hour Forecast" : "5일 / 3시간 예보"}
+        <ChangeView onClick={changeListview}>{language === "ENG" ? "change view" : "화면 변환"}</ChangeView>
         </Titlefivedays>
         {view === "yview" ?
           <YweatherContainer>
             {value.map((items) => (
               <ContainerList key={items.id} style={{marginBottom: 20, width: "33.33%"}} >
-                <WeatherContent items={items}/>
+                <WeatherContent items={items} language={language}/>
               </ContainerList>
             ))}
           </YweatherContainer>
@@ -43,7 +43,7 @@ console.log(view)
           <XweatherContainer>
             {value.map((items) => (
               <ContainerList key={items.id} style={{marginBottom: 20, width: "33.33%"}} >
-                <WeatherContent items={items}/>
+                <WeatherContent items={items} language={language}/>
               </ContainerList>
             ))}
           </XweatherContainer>

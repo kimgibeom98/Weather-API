@@ -16,7 +16,6 @@ function App() {
       .all([axios.get(`${process.env.REACT_APP_HOST_URL}/realtime`), axios.get(`${process.env.REACT_APP_HOST_URL}/timeinterval`)])
       .then(
         axios.spread((res1, res2) => {
-          console.log(res1.data, res2.data)
           res1.data.length >= 1 && res2.data.length >= 1 ? setHealth(true) : setHealth(false)
         })
       )

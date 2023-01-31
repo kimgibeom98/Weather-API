@@ -36,6 +36,7 @@ const timeintervalGetdata = async () => {
 const putData = async (data) => {
   try {
     const realtimeData = {
+      idnum : data.weather[0].id,
       temperature: data.main.temp,
       main: data.weather[0].main,
       icon: data.weather[0].icon,
@@ -52,6 +53,7 @@ const putData = async (data) => {
 
 const puthourlyWeather = async (data) => {
   const timeintervalData = data.list.map((item) => ({
+    idnum : item.weather[0].id,
     dt: item.dt_txt,
     temperature: item.main.temp,
     main: item.weather[0].main,
