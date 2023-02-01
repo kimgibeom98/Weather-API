@@ -10,7 +10,7 @@ const WeatherInfos = ({health, language}) => {
  
   const requestData =  async () => {
     try {
-      const {data} = await axios.get(`${process.env.REACT_APP_HOST_URL}/timeinterval`);
+      const {data} = await axios.get(`${process.env.REACT_APP_HOST_URL}/weatherlist`);
       setValue(data)
     } catch (err) {
       alert('날씨 데이터를 불러오는데 실패하였습니다.')

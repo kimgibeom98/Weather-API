@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect} from "react";
 import axios from "axios";
 import styled, { css } from "styled-components";
 
@@ -9,11 +9,10 @@ import ErrorPage from "./component/ErrorPage";
 
 function App() {
   const [cold, setCold] = useState('');
-  const [health, setHealth] = useState(false);
-
+  const [health, setHealth] = useState(true);
   useEffect(() => {
     axios
-      .all([axios.get(`${process.env.REACT_APP_HOST_URL}/realtime`), axios.get(`${process.env.REACT_APP_HOST_URL}/timeinterval`)])
+      .all([axios.get(`${process.env.REACT_APP_HOST_URL}/weatherinfo`), axios.get(`${process.env.REACT_APP_HOST_URL}/weatherlist`)])
       .then(
         axios.spread((res1, res2) => {
           res1.data.length >= 1 && res2.data.length >= 1 ? setHealth(true) : setHealth(false)
