@@ -1,18 +1,14 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useEffect, useState, useContext } from "react";
 import moment from 'moment';
 import styled from "styled-components";
 import { FaWind, FaThermometerFull } from 'react-icons/fa';
-
 import { WeatherDescKo } from "../component/WeatherDescKo ";
+import { WeatherStateContext } from "../App";
 import WeatherInfos from "../component/WeatherInfos";
 import 'moment/locale/ko';
 
-
-
-
-function Weather({ setCold, health }) {
-  const [weather, setWeather] = useState({});
+function Weather() {
+  const [weather] = useContext(WeatherStateContext);
   const [language, setLanguage] = useState(() => {
     if (typeof window !== "undefined") {
       const saved = window.localStorage.getItem("languageValue");
@@ -23,89 +19,60 @@ function Weather({ setCold, health }) {
       }
     }
   });
-
   const city = {
-    ENG : "Seoul",
-    KOR : "서울"
+    ENG: "Seoul",
+    KOR: "서울"
   }
   const iconUlr = `http://openweathermap.org/img/wn/${weather.icon}@2x.png`
-
   const optionList = [
     { value: 'ENG', name: '영어' },
     { value: 'KOR', name: '한글' }
   ]
-
-
-  const requestData = async () => {
-    try {
-      const { data } = await axios.get(`${process.env.REACT_APP_HOST_URL}/weatherinfo`);
-      await setWeather({
-        idnum: data[0].idnum,
-        temperature: data[0].temperature,
-        main: data[0].main,
-        icon: data[0].icon,
-        speed: data[0].speed,
-        humidity: data[0].humidity,
-        currenttime: data[0].currenttime
-      });
-    } catch (err) {
-      alert('날씨 데이터를 불러오는데 실패하였습니다.')
-    }
-  }
-
-  const ControlLanguage = ({ value, onChange, optionList }) => {
+  const ControlLanguage = React.memo(({ value, onChange, optionList }) => {
     return (
       <select value={value} onChange={(e) => onChange(e.target.value)}>
         {optionList.map((it, idx) =>
           <option key={idx} value={it.value}>{it.name}</option>)}
       </select>
     );
-  };
+  });
 
-  useEffect(()=>{
-    localStorage.setItem('languageValue', JSON.stringify(language))
-  },[language])
-
-  
   useEffect(() => {
-    if (health === true) requestData()
-    setCold(weather.main === 'Clear');
-  }, [weather.temperature, weather.speed, weather.humidity, setCold, weather.main, health])
+    localStorage.setItem('languageValue', JSON.stringify(language))
+  }, [language])
+
   language === "ENG" ? moment.locale('en') : moment.locale('ko');
 
-
-  if(Object.keys(weather).length !== 0){
-    return (
-      <>
-        <article>
-          <TitleBox>
-            <SynchronizationTime>{language === "ENG" ? "Last sync date :" : "마지막 동기화 날짜 :" } {weather.currenttime}</SynchronizationTime>
-            <ControlLanguage value={language} onChange={setLanguage} optionList={optionList} />
-          </TitleBox>
-          <DateDiv>{moment().format('YYYY-MM-DD dddd')}</DateDiv>
-          <LocationDiv>{language === "ENG" ? city.ENG : city.KOR}</LocationDiv>
-          <WeatherDiv>{language === "ENG" ? weather.main : Object.values(WeatherDescKo.filter((it) => it[weather.idnum])[0])}</WeatherDiv>
-        </article>
-        <Content>
-          <img src={iconUlr} alt="날씨 아이콘" />
-          <TemperatureDiv>{(weather.temperature - 273.15).toFixed()}℃</TemperatureDiv>
-          <RightBox>
-            <RightInfo style={{ marginBottom: 5 }}>
-              <FaThermometerFull size={18} />
-              <InfoChild>{language === "ENG" ? "Humidity :" : "습기 :"} {weather.humidity}%</InfoChild>
-            </RightInfo>
-            <RightInfo>
-              <FaWind size={18} />
-              <InfoChild>{language === "ENG" ? "Speed :" : "풍속 : "} {weather.speed}km/h</InfoChild>
-            </RightInfo>
-          </RightBox>
-        </Content>
-        <WeatherInfos health={health} language={language} />
-      </>
-    );
-  }
+  return (
+    <>
+      <article>
+        <TitleBox>
+          <SynchronizationTime>{language === "ENG" ? "Last sync date :" : "마지막 동기화 날짜 :"} {weather.currenttime}</SynchronizationTime>
+          <ControlLanguage value={language} onChange={setLanguage} optionList={optionList} />
+        </TitleBox>
+        <DateDiv>{moment().format('YYYY-MM-DD dddd')}</DateDiv>
+        <LocationDiv>{language === "ENG" ? city.ENG : city.KOR}</LocationDiv>
+        <WeatherDiv>{language === "ENG" ? weather.main : Object.values(WeatherDescKo.filter((it) => it[weather.idnum])[0])}</WeatherDiv>
+      </article>
+      <Content>
+        <img src={iconUlr} alt="날씨 아이콘" />
+        <TemperatureDiv>{(weather.temperature - 273.15).toFixed()}℃</TemperatureDiv>
+        <RightBox>
+          <RightInfo style={{ marginBottom: 5 }}>
+            <FaThermometerFull size={18} />
+            <InfoChild>{language === "ENG" ? "Humidity :" : "습기 :"} {weather.humidity}%</InfoChild>
+          </RightInfo>
+          <RightInfo>
+            <FaWind size={18} />
+            <InfoChild>{language === "ENG" ? "Speed :" : "풍속 : "} {weather.speed}km/h</InfoChild>
+          </RightInfo>
+        </RightBox>
+      </Content>
+      <WeatherInfos language={language} />
+    </>
+  );
 }
-export default Weather;
+export default React.memo(Weather);
 
 const TitleBox = styled.div`
   display : flex;

@@ -1,53 +1,40 @@
-import React, { useEffect, useState } from "react";
-import axios from "axios";
+import React, { useState, useContext } from "react";
 import styled from "styled-components";
-
 import WeatherContent from "./WeatherContent"
 
-const WeatherInfos = ({health, language}) => {
-  const [value, setValue] = useState([]);
-  const [view, setView] =useState('yview');
- 
-  const requestData =  async () => {
-    try {
-      const {data} = await axios.get(`${process.env.REACT_APP_HOST_URL}/weatherlist`);
-      setValue(data)
-    } catch (err) {
-      alert('날씨 데이터를 불러오는데 실패하였습니다.')
-    }
-  }
+import { WeatherStateContext } from "../App";
 
+const WeatherInfos = ({ language }) => {
+
+  const value = useContext(WeatherStateContext)[1];
+  const [view, setView] = useState('yview');
   const changeListview = () => {
     view === "yview" ? setView("xview") : setView("yview")
   }
-  
-  useEffect(() => {
-    if(health === true) requestData();
-  }, [health])
 
   return (
     <article>
       <Titlefivedays>
         {language === "ENG" ? "5 Day / 3 Hour Forecast" : "5일 / 3시간 예보"}
         <ChangeView onClick={changeListview}>{language === "ENG" ? "change view" : "화면 변환"}</ChangeView>
-        </Titlefivedays>
-        {view === "yview" ?
-          <YweatherContainer>
-            {value.map((items) => (
-              <ContainerList key={items.id} style={{marginBottom: 20, width: "33.33%"}} >
-                <WeatherContent items={items} language={language}/>
-              </ContainerList>
-            ))}
-          </YweatherContainer>
-          :
-          <XweatherContainer>
-            {value.map((items) => (
-              <ContainerList key={items.id} style={{marginLeft: 10, marginRight : 10, width: "33.33%"}} >
-                <WeatherContent items={items} language={language}/>
-              </ContainerList>
-            ))}
-          </XweatherContainer>
-        }
+      </Titlefivedays>
+      {view === "yview" ?
+        <YweatherContainer>
+          {value.map((items) => (
+            <ContainerList key={items.id} style={{ marginBottom: 20, width: "33.33%" }} >
+              <WeatherContent items={items} language={language} />
+            </ContainerList>
+          ))}
+        </YweatherContainer>
+        :
+        <XweatherContainer>
+          {value.map((items) => (
+            <ContainerList key={items.id} style={{ marginLeft: 10, marginRight: 10, width: "33.33%" }} >
+              <WeatherContent items={items} language={language} />
+            </ContainerList>
+          ))}
+        </XweatherContainer>
+      }
     </article>
   )
 }
