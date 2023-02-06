@@ -24,31 +24,21 @@ function Weather() {
     KOR: "서울"
   }
   const iconUlr = `http://openweathermap.org/img/wn/${weather.icon}@2x.png`
-  const optionList = [
-    { value: 'ENG', name: '영어' },
-    { value: 'KOR', name: '한글' }
-  ]
-  const ControlLanguage = React.memo(({ value, onChange, optionList }) => {
-    return (
-      <select value={value} onChange={(e) => onChange(e.target.value)}>
-        {optionList.map((it, idx) =>
-          <option key={idx} value={it.value}>{it.name}</option>)}
-      </select>
-    );
-  });
 
   useEffect(() => {
     localStorage.setItem('languageValue', JSON.stringify(language))
+    language === "ENG" ? moment.locale('en') : moment.locale('ko');
   }, [language])
-
-  language === "ENG" ? moment.locale('en') : moment.locale('ko');
 
   return (
     <>
       <article>
         <TitleBox>
           <SynchronizationTime>{language === "ENG" ? "Last sync date :" : "마지막 동기화 날짜 :"} {weather.currenttime}</SynchronizationTime>
-          <ControlLanguage value={language} onChange={setLanguage} optionList={optionList} />
+          <select name="" id="" value={language} onChange={(e) => setLanguage(e.target.value)}>
+            <option value="ENG">영어</option>
+            <option value="KOR">한글</option>
+          </select>
         </TitleBox>
         <DateDiv>{moment().format('YYYY-MM-DD dddd')}</DateDiv>
         <LocationDiv>{language === "ENG" ? city.ENG : city.KOR}</LocationDiv>
