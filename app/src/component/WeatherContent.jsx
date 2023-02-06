@@ -9,6 +9,6 @@ const WeatherContent = ({items, language}) => {
       <div>{(items.temperature - 273.15).toFixed()}℃</div>
     </>
   )
-}
+};
 
 export default WeatherContent;

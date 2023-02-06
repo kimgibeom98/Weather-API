@@ -7,7 +7,7 @@ const ErrorPage = () => {
       <ErrorPhrases>죄송합니다 데이터가 존재하지 않습니다.</ErrorPhrases>
     </ErrorContent>
   )
-}
+};
 export default ErrorPage;
 
 const ErrorContent = styled.article`

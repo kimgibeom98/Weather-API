@@ -19,16 +19,18 @@ function Weather() {
       }
     }
   });
+
   const city = {
     ENG: "Seoul",
     KOR: "서울"
-  }
-  const iconUlr = `http://openweathermap.org/img/wn/${weather.icon}@2x.png`
+  };
+
+  const iconUlr = `http://openweathermap.org/img/wn/${weather.icon}@2x.png`;
 
   useEffect(() => {
     localStorage.setItem('languageValue', JSON.stringify(language))
     language === "ENG" ? moment.locale('en') : moment.locale('ko');
-  }, [language])
+  }, [language]);
 
   return (
     <>
@@ -61,7 +63,7 @@ function Weather() {
       <WeatherInfos language={language} />
     </>
   );
-}
+};
 export default React.memo(Weather);
 
 const TitleBox = styled.div`

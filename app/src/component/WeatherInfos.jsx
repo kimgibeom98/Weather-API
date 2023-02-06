@@ -10,7 +10,7 @@ const WeatherInfos = ({ language }) => {
   const [view, setView] = useState('yview');
   const changeListview = () => {
     view === "yview" ? setView("xview") : setView("yview")
-  }
+  };
 
   return (
     <article>
@@ -37,7 +37,7 @@ const WeatherInfos = ({ language }) => {
       }
     </article>
   )
-}
+};
 
 export default WeatherInfos;
 
