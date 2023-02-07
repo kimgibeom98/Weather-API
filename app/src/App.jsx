@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import styled, { css } from "styled-components";
 
-import "./App.css";
 import ErrorPage from "./component/ErrorPage";
 import Weather from "./page/Weather";
 
@@ -12,6 +11,10 @@ function App() {
   const [cold, setCold] = useState('');
   const [value, setValue] = useState([]);
   const [weather, setWeather] = useState({});
+  
+  const [health, setHealth] = useState(false);
+  const [getData, setGetData] = useState(false);
+
 
   useEffect(() => {
     axios
@@ -19,6 +22,7 @@ function App() {
       .then(
         axios.spread((res1, res2) => {
           if (res1.data.length >= 1 && res2.data.length >= 1) {
+            setHealth(true);
             setCold(res1.data[0].main === 'Clear');
             setWeather({
               idnum: res1.data[0].idnum,
@@ -30,22 +34,27 @@ function App() {
               currenttime: res1.data[0].currenttime
             });
             setValue(res2.data);
-          }
+          } else {
+            setHealth(false);
+          };
+          setGetData(true);
         })
       )
-      .catch((err) => console.log(err));
+      .catch((err) => {setGetData(false); console.log(err)});
   }, []);
-
+  
   return (
     <WeatherStateContext.Provider value={[weather, value]}>
       <ContentSection cold={cold}>
-        {cold !== "" && Object.keys(weather && value).length !== 0 ? <Weather /> : <ErrorPage />}
+        {getData && health ? <Weather /> : <ErrorPage getData={getData}/>}
       </ContentSection>
     </WeatherStateContext.Provider>
   );
-}
+};
+
 export default App;
 const ContentSection = styled.section`
+  font-family: 'Roboto';
   width: 600px;
   align-items: center;
   justify-content: center;

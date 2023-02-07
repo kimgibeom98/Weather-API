@@ -11,9 +11,8 @@ const WeatherInfos = ({ language }) => {
   const changeListview = () => {
     view === "yview" ? setView("xview") : setView("yview")
   };
-
   return (
-    <article>
+    <Weatherlist>
       <Titlefivedays>
         {language === "ENG" ? "5 Day / 3 Hour Forecast" : "5일 / 3시간 예보"}
         <ChangeView onClick={changeListview}>{language === "ENG" ? "change view" : "화면 변환"}</ChangeView>
@@ -35,11 +34,27 @@ const WeatherInfos = ({ language }) => {
           ))}
         </XweatherContainer>
       }
-    </article>
+    </Weatherlist>
   )
 };
 
 export default WeatherInfos;
+const Weatherlist = styled.article`
+   ul::-webkit-scrollbar {
+    width: 5px; 
+}
+
+ul::-webkit-scrollbar-thumb {
+    height: 30%; 
+    background: #217af4;
+    
+    border-radius: 10px;
+}
+
+ul::-webkit-scrollbar-track {
+    background: rgba(33, 122, 244, .1);
+}
+`
 
 const Titlefivedays = styled.div`
   border-top: 2px solid #fff;
@@ -52,7 +67,7 @@ const Titlefivedays = styled.div`
   justify-content : space-between;
   align-items : center;
   height : 40px;
-`
+`;
 
 const YweatherContainer = styled.ul`
   display : flex;
@@ -61,20 +76,28 @@ const YweatherContainer = styled.ul`
   justify-content : space-between;
   overflow-y : scroll;
   max-height : 340px;
-`
+   > li {
+    list-style: none;
+   }
+`;
+
 
 const XweatherContainer = styled.ul`
   display : flex;
   flex-wrap : nowrap;
   overflow-x : auto;
   padding : 0;
-`
+  > li {
+    list-style: none;
+   }
+`;
+
 const ContainerList = styled.li` > div {
   color : white;
   text-align : center;
   font-size : 15px;
 }
-`
+`;
 
 const ChangeView = styled.button`
   border : none;
@@ -85,4 +108,4 @@ const ChangeView = styled.button`
   max-height : 25px;
   font-family: 'Roboto';
   border-radius : 5px;
-`
+`;

@@ -17,7 +17,7 @@ function Weather() {
       } else {
         return "ENG";
       }
-    }
+    };
   });
 
   const city = {
@@ -31,7 +31,7 @@ function Weather() {
     localStorage.setItem('languageValue', JSON.stringify(language))
     language === "ENG" ? moment.locale('en') : moment.locale('ko');
   }, [language]);
-
+  console.log(123)
   return (
     <>
       <article>
@@ -70,12 +70,12 @@ const TitleBox = styled.div`
   display : flex;
   justify-content : space-between;
   align-items : center;
-`
+`;
 
 const SynchronizationTime = styled.div`
   color : yellow;
   padding-top : 20px;
-`
+`;
 
 const LocationDiv = styled.div`
   color: white;
@@ -90,16 +90,16 @@ const Content = styled.article`
     justify-content : space-between;
     align-items : center;
     margin-bottom : 50px;
-`
+`;
 const RightInfo = styled.div`
 display : flex;
 text-align : right;
 color : white;
 align-items : center;
-`
+`;
 const RightBox = styled.div`
   font-size: 20px;
-`
+`;
 const DateDiv = styled.div`
   text-align : center;
   color: white;
@@ -123,4 +123,4 @@ const InfoChild = styled.div`
 font-size: 15px;
 margin-left : 5px;
 font-weight : 500;
-`
+`;
