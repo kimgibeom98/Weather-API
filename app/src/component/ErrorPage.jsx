@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-const ErrorPage = ({getData}) => {
+const ErrorPage = ({ getData }) => {
   return (
     <ErrorContent>
       <img style={{ marginBottom: 30, paddingTop: 50 }} src={`${process.env.PUBLIC_URL}/image/error_img.png`} alt="ERROR 이미지" />

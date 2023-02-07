@@ -40,20 +40,19 @@ const WeatherInfos = ({ language }) => {
 
 export default WeatherInfos;
 const Weatherlist = styled.article`
-   ul::-webkit-scrollbar {
+  ul::-webkit-scrollbar {
     width: 5px; 
-}
+  }
 
-ul::-webkit-scrollbar-thumb {
-    height: 30%; 
-    background: #217af4;
-    
-    border-radius: 10px;
-}
+  ul::-webkit-scrollbar-thumb {
+      height: 30%; 
+      background: #217af4;
+      border-radius: 10px;
+  }
 
-ul::-webkit-scrollbar-track {
-    background: rgba(33, 122, 244, .1);
-}
+  ul::-webkit-scrollbar-track {
+      background: rgba(33, 122, 244, .1);
+  }
 `
 
 const Titlefivedays = styled.div`

@@ -11,7 +11,7 @@ function App() {
   const [cold, setCold] = useState('');
   const [value, setValue] = useState([]);
   const [weather, setWeather] = useState({});
-  
+
   const [health, setHealth] = useState(false);
   const [getData, setGetData] = useState(false);
 
@@ -40,13 +40,13 @@ function App() {
           setGetData(true);
         })
       )
-      .catch((err) => {setGetData(false); console.log(err)});
+      .catch((err) => { setGetData(false); console.log(err) });
   }, []);
-  
+
   return (
     <WeatherStateContext.Provider value={[weather, value]}>
       <ContentSection cold={cold}>
-        {getData && health ? <Weather /> : <ErrorPage getData={getData}/>}
+        {getData && health ? <Weather /> : <ErrorPage getData={getData} />}
       </ContentSection>
     </WeatherStateContext.Provider>
   );

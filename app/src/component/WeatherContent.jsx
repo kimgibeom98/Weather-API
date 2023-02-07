@@ -1,6 +1,6 @@
 import { WeatherDescKo } from "./WeatherDescKo ";
 
-const WeatherContent = ({items, language}) => {
+const WeatherContent = ({ items, language }) => {
   return (
     <>
       <div>{items.dt.substr(0, 16)}</div>

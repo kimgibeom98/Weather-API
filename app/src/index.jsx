@@ -5,10 +5,10 @@ import { GlobalFont } from './component/GlobalFont';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-    <>
+  <>
     <GlobalFont />
     <App />
-    </>
+  </>
 );
 
 
