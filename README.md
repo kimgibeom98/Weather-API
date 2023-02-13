@@ -1,4 +1,4 @@
-# react-weather-app
+# :sunny: react-weather-app
 
  OpenWeatherMap과 React를 이용해서 만든 날씨 정보 앱입니다.
  
