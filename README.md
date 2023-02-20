@@ -1,5 +1,7 @@
 # :sunny: react-weather-app
 
+![Animation](https://user-images.githubusercontent.com/77928818/219985092-a565bba2-30c3-42c3-a071-115e60d1452b.gif)
+
  OpenWeatherMap과 React를 이용해서 만든 날씨 정보 앱입니다.
  
  API를 조회하는 횟수가 한정되어있어 매 정각 데이터를 수집 후 REST API로 만들어서 제작하였습니다.  
