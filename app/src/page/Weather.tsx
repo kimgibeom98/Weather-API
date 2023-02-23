@@ -8,7 +8,18 @@ import WeatherInfos from "../component/WeatherInfos";
 import 'moment/locale/ko';
 
 function Weather() {
-  const [weather] = useContext(WeatherStateContext);
+
+  interface weatherProps {
+    idnum : number;
+    temperature : number;
+    main : string;
+    icon : string;
+    speed : number;
+    humidity : number;
+    currenttime : string;
+  }
+  
+  const weather  = useContext(WeatherStateContext)[0] as weatherProps;
   const [language, setLanguage] = useState(() => {
     if (typeof window !== "undefined") {
       const saved = window.localStorage.getItem("languageValue");
@@ -29,9 +40,10 @@ function Weather() {
 
   useEffect(() => {
     localStorage.setItem('languageValue', JSON.stringify(language))
-    language === "ENG" ? moment.locale('en') : moment.locale('ko');
   }, [language]);
-  console.log(123)
+
+  language === "ENG" ? moment.locale('en') : moment.locale('ko');
+  
   return (
     <>
       <article>
