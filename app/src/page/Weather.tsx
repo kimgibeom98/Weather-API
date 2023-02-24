@@ -5,21 +5,12 @@ import { FaWind, FaThermometerFull } from 'react-icons/fa';
 import { WeatherDescKo } from "../component/WeatherDescKo ";
 import { WeatherStateContext } from "../App";
 import WeatherInfos from "../component/WeatherInfos";
+import { WeatherProps, indexSignature } from "../models/weather"
 import 'moment/locale/ko';
 
 function Weather() {
 
-  interface weatherProps {
-    idnum : number;
-    temperature : number;
-    main : string;
-    icon : string;
-    speed : number;
-    humidity : number;
-    currenttime : string;
-  }
-  
-  const weather  = useContext(WeatherStateContext)[0] as weatherProps;
+  const weather = useContext(WeatherStateContext)[0] as WeatherProps[];
   const [language, setLanguage] = useState(() => {
     if (typeof window !== "undefined") {
       const saved = window.localStorage.getItem("languageValue");
@@ -35,20 +26,20 @@ function Weather() {
     ENG: "Seoul",
     KOR: "서울"
   };
+  console.log(weather)
 
-  const iconUlr = `http://openweathermap.org/img/wn/${weather.icon}@2x.png`;
+  const iconUlr = `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
 
   useEffect(() => {
     localStorage.setItem('languageValue', JSON.stringify(language))
   }, [language]);
-
   language === "ENG" ? moment.locale('en') : moment.locale('ko');
-  
+
   return (
     <>
       <article>
         <TitleBox>
-          <SynchronizationTime>{language === "ENG" ? "Last sync date :" : "마지막 동기화 날짜 :"} {weather.currenttime}</SynchronizationTime>
+          <SynchronizationTime>{language === "ENG" ? "Last sync date :" : "마지막 동기화 날짜 :"} {weather[0].currenttime}</SynchronizationTime>
           <select name="" id="" value={language} onChange={(e) => setLanguage(e.target.value)}>
             <option value="ENG">영어</option>
             <option value="KOR">한글</option>
@@ -56,19 +47,19 @@ function Weather() {
         </TitleBox>
         <DateDiv>{moment().format('YYYY-MM-DD dddd')}</DateDiv>
         <LocationDiv>{language === "ENG" ? city.ENG : city.KOR}</LocationDiv>
-        <WeatherDiv>{language === "ENG" ? weather.main : Object.values(WeatherDescKo.filter((it) => it[weather.idnum])[0])}</WeatherDiv>
+        <WeatherDiv>{language === "ENG" ? weather[0].main : Object.values(WeatherDescKo.filter((it: indexSignature) => it[weather[0].idnum])[0])}</WeatherDiv>
       </article>
       <Content>
         <img src={iconUlr} alt="날씨 아이콘" />
-        <TemperatureDiv>{(weather.temperature - 273.15).toFixed()}℃</TemperatureDiv>
+        <TemperatureDiv>{(weather[0].temperature - 273.15).toFixed()}℃</TemperatureDiv>
         <RightBox>
           <RightInfo style={{ marginBottom: 5 }}>
             <FaThermometerFull size={18} />
-            <InfoChild>{language === "ENG" ? "Humidity :" : "습기 :"} {weather.humidity}%</InfoChild>
+            <InfoChild>{language === "ENG" ? "Humidity :" : "습기 :"} {weather[0].humidity}%</InfoChild>
           </RightInfo>
           <RightInfo>
             <FaWind size={18} />
-            <InfoChild>{language === "ENG" ? "Speed :" : "풍속 : "} {weather.speed}km/h</InfoChild>
+            <InfoChild>{language === "ENG" ? "Speed :" : "풍속 : "} {weather[0].speed}km/h</InfoChild>
           </RightInfo>
         </RightBox>
       </Content>

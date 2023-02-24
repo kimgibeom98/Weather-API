@@ -3,14 +3,18 @@ import styled from "styled-components";
 import WeatherContent from "./WeatherContent"
 
 import { WeatherStateContext } from "../App";
+import { WeatherListprops, LanguageProps } from "../models/weather";
 
-const WeatherInfos = ({ language }) => {
 
-  const value = useContext(WeatherStateContext)[1];
+
+const WeatherInfos = ({ language }: LanguageProps) => {
+
+  const values = useContext(WeatherStateContext)[1] as WeatherListprops[];
   const [view, setView] = useState('yview');
   const changeListview = () => {
     view === "yview" ? setView("xview") : setView("yview")
   };
+
   return (
     <Weatherlist>
       <Titlefivedays>
@@ -19,16 +23,16 @@ const WeatherInfos = ({ language }) => {
       </Titlefivedays>
       {view === "yview" ?
         <YweatherContainer>
-          {value.map((items) => (
-            <ContainerList key={items.id} style={{ marginBottom: 20, width: "33.33%" }} >
+          {values.map((items, index) => (
+            <ContainerList key={index} style={{ marginBottom: 20, width: "33.33%" }} >
               <WeatherContent items={items} language={language} />
             </ContainerList>
           ))}
         </YweatherContainer>
         :
         <XweatherContainer>
-          {value.map((items) => (
-            <ContainerList key={items.id} style={{ marginLeft: 10, marginRight: 10, width: "33.33%" }} >
+          {values.map((items, index) => (
+            <ContainerList key={index} style={{ marginLeft: 10, marginRight: 10, width: "33.33%" }} >
               <WeatherContent items={items} language={language} />
             </ContainerList>
           ))}

@@ -4,23 +4,19 @@ import styled, { css } from "styled-components";
 
 import ErrorPage from "./component/ErrorPage";
 import Weather from "./page/Weather";
+import { WeatherProps, WeatherListprops } from "./models/weather"
 
-interface weatherProps {
-  idnum: number;
-  temperature: number;
-  main: string;
-  icon: string;
-  speed: number;
-  humidity: number;
-  currenttime: string;
-}
+// interface MyContext {
+//   weather: WeatherProps;
+//   values: WeatherListprops;
+// }
 
 export const WeatherStateContext = React.createContext<Array<object> | null>(null);
 
 function App() {
   const [cold, setCold] = useState<boolean>(false);
   const [values, setValues] = useState([]);
-  const [weather, setWeather] = useState<Array<weatherProps>>([]);
+  const [weather, setWeather] = useState<Array<WeatherProps>>([]);
 
   const [health, setHealth] = useState(false);
   const [getData, setGetData] = useState(false);
@@ -52,13 +48,13 @@ function App() {
       )
       .catch((err) => { setGetData(false); console.log(err) });
   }, []);
-    return (
-      <WeatherStateContext.Provider value={[weather, values]}>
-        <ContentSection cold={cold}>
-          {getData && health ? <Weather /> : <ErrorPage getData={getData} />}
-        </ContentSection>
-      </WeatherStateContext.Provider>
-    );
+  return (
+    <WeatherStateContext.Provider value={[weather, values]}>
+      <ContentSection cold={cold}>
+        {getData && health ? <Weather /> : <ErrorPage getData={getData} />}
+      </ContentSection>
+    </WeatherStateContext.Provider>
+  );
 
 };
 

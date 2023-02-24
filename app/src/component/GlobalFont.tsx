@@ -1,7 +1,7 @@
 import { createGlobalStyle } from 'styled-components';
-import RobotoFontTTFRegular from '../font/Roboto-Regular.ttf';
-import RobotoFontTTFMedium from '../font/Roboto-Medium.ttf';
-import RobotoFontTTFBold from '../font/Roboto-Bold.ttf';
+import RobotoFontTTFRegular from '../font/Roboto-Regular.woff';
+import RobotoFontTTFMedium from '../font/Roboto-Medium.woff';
+import RobotoFontTTFBold from '../font/Roboto-Bold.woff';
 
 
 export const GlobalFont = createGlobalStyle`
