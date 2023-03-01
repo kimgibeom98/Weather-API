@@ -4,12 +4,7 @@ import styled, { css } from "styled-components";
 
 import ErrorPage from "./component/ErrorPage";
 import Weather from "./page/Weather";
-import { WeatherProps, WeatherListprops } from "./models/weather"
-
-// interface MyContext {
-//   weather: WeatherProps;
-//   values: WeatherListprops;
-// }
+import { WeatherProps } from "./models/weather"
 
 export const WeatherStateContext = React.createContext<Array<object> | null>(null);
 
