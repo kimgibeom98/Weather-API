@@ -1,7 +1,7 @@
 import * as dotenv from 'dotenv';
 import moment from 'moment';
 import axios from "axios"
-// import schedule from 'node-schedule'
+import schedule from 'node-schedule'
 
 dotenv.config();
 
@@ -94,7 +94,7 @@ const puthourlyWeather = async (data: { list: dataList[]; }) => {
 }
 
 
-// schedule.scheduleJob('0 0 * * * *', function () {
-timeintervalGetdata();
-realtimeGetdata();
-// });
+schedule.scheduleJob('0 0 * * * *', function () {
+  timeintervalGetdata();
+  realtimeGetdata();
+});

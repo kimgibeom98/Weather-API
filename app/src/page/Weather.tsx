@@ -26,8 +26,7 @@ function Weather() {
     ENG: "Seoul",
     KOR: "서울"
   };
-  console.log(weather)
-
+  
   const iconUlr = `http://openweathermap.org/img/wn/${weather[0].icon}@2x.png`;
 
   useEffect(() => {
