@@ -1,12 +1,10 @@
 import React, { useEffect, useState, useContext } from "react";
-import moment from 'moment';
 import styled from "styled-components";
 import { FaWind, FaThermometerFull } from 'react-icons/fa';
 import { WeatherDescKo } from "../component/WeatherDescKo ";
 import { WeatherStateContext } from "../App";
 import WeatherInfos from "../component/WeatherInfos";
 import { WeatherProps, indexSignature } from "../models/weather"
-import 'moment/locale/ko';
 
 function Weather() {
 
@@ -32,7 +30,6 @@ function Weather() {
   useEffect(() => {
     localStorage.setItem('languageValue', JSON.stringify(language))
   }, [language]);
-  language === "ENG" ? moment.locale('en') : moment.locale('ko');
 
   return (
     <>
@@ -44,7 +41,7 @@ function Weather() {
             <option value="KOR">한글</option>
           </select>
         </TitleBox>
-        <DateDiv>{moment().format('YYYY-MM-DD dddd')}</DateDiv>
+        <DateDiv>{language === "ENG" ? weather[0].engdate : weather[0].kordate}</DateDiv>
         <LocationDiv>{language === "ENG" ? city.ENG : city.KOR}</LocationDiv>
         <WeatherDiv>{language === "ENG" ? weather[0].main : Object.values(WeatherDescKo.filter((it: indexSignature) => it[weather[0].idnum])[0])}</WeatherDiv>
       </article>

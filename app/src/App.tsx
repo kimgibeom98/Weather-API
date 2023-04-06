@@ -32,7 +32,9 @@ function App() {
               icon: res1.data[0].icon,
               speed: res1.data[0].speed,
               humidity: res1.data[0].humidity,
-              currenttime: res1.data[0].currenttime
+              currenttime: res1.data[0].currenttime,
+              kordate: res1.data[0].kordate,
+              engdate: res1.data[0].engdate
             }]);
             setValues(res2.data);
           } else {

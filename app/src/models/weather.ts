@@ -6,6 +6,8 @@ interface WeatherProps {
   speed: number;
   humidity: number;
   currenttime: string;
+  kordate: string;
+  engdate: string;
 }
 
 interface WeatherListprops {

@@ -65,7 +65,9 @@ const putData = async (data: apiData) => {
       icon: data.weather[0].icon,
       speed: data.wind.speed,
       humidity: data.main.humidity,
-      currenttime: moment().format('MM/DD hh:mm')
+      currenttime: moment().format('MM/DD hh:mm'),
+      kordate:  moment().lang("ko").format('YYYY-MM-DD dddd'),
+      engdate:  moment().lang("en").format('YYYY-MM-DD dddd')
     }
     await axios.put(`${process.env.HOST_KEY}/weatherinfo/1`, realtimeData);
 
