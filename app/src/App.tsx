@@ -58,16 +58,16 @@ function App() {
 export default App;
 const ContentSection = styled.section<{ cold: boolean }>`
   font-family: 'Roboto';
-  width: 600px;
+  width: 450px;
   align-items: center;
   justify-content: center;
   background-color: #325281;
   margin: 0 auto;
-  padding: 0 20px;
+  padding: 0 15px;
   box-sizing : border-box;
   ${(props) =>
     props.cold &&
     css`
-    background: linear-gradient(#577eaf, #1555ad);
+    background: linear-gradient(#769fd3, #1555ad);
     `}
 `;

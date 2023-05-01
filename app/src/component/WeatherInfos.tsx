@@ -24,7 +24,7 @@ const WeatherInfos = ({ language }: LanguageProps) => {
       {view === "yview" ?
         <YweatherContainer>
           {values.map((items, index) => (
-            <ContainerList key={index} style={{ marginBottom: 20, width: "33.33%" }} >
+            <ContainerList key={index} style={{marginBottom : 20}} >
               <WeatherContent items={items} language={language} />
             </ContainerList>
           ))}
@@ -32,7 +32,7 @@ const WeatherInfos = ({ language }: LanguageProps) => {
         :
         <XweatherContainer>
           {values.map((items, index) => (
-            <ContainerList key={index} style={{ marginLeft: 10, marginRight: 10, width: "33.33%" }} >
+            <ContainerList key={index}>
               <WeatherContent items={items} language={language} />
             </ContainerList>
           ))}
@@ -95,10 +95,17 @@ const XweatherContainer = styled.ul`
    }
 `;
 
-const ContainerList = styled.li` > div {
-  color : white;
-  text-align : center;
-  font-size : 15px;
+const ContainerList = styled.li`
+  width : 25.9%;
+  background : rgba(255,255,255,0.2);
+  padding : 10px;
+  border-radius : 20px;
+  margin-left: 5px;
+  margin-right: 5px;
+  > div {
+    color : white;
+    text-align : center;
+    font-size : 15px;
 }
 `;
 
