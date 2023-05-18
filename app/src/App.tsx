@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import styled, { css } from "styled-components";
 
 import ErrorPage from "./component/ErrorPage";
 import Weather from "./page/Weather";
 import { WeatherProps } from "./models/weather"
+import data from "./models/mock"
 
 export const WeatherStateContext = React.createContext<Array<object> | null>(null);
 
@@ -16,34 +16,23 @@ function App() {
   const [health, setHealth] = useState(false);
   const [getData, setGetData] = useState(false);
 
-
   useEffect(() => {
-    axios
-      .all([axios.get(`${process.env.REACT_APP_HOST_URL}/weatherinfo`), axios.get(`${process.env.REACT_APP_HOST_URL}/weatherlist`)])
-      .then(
-        axios.spread((res1, res2) => {
-          if (res1.data.length >= 1 && res2.data.length >= 1) {
-            setHealth(true);
-            setCold(res1.data[0].main === 'Clear');
-            setWeather([{
-              idnum: res1.data[0].idnum,
-              temperature: res1.data[0].temperature,
-              main: res1.data[0].main,
-              icon: res1.data[0].icon,
-              speed: res1.data[0].speed,
-              humidity: res1.data[0].humidity,
-              currenttime: res1.data[0].currenttime,
-              kordate: res1.data[0].kordate,
-              engdate: res1.data[0].engdate
-            }]);
-            setValues(res2.data);
-          } else {
-            setHealth(false);
-          };
-          setGetData(true);
-        })
-      )
-      .catch((err) => { setGetData(false); console.log(err) });
+    setHealth(true);
+    setCold(data.weatherinfo[0].main === 'Clear');
+    setWeather([{
+      idnum: data.weatherinfo[0].idnum,
+      temperature: data.weatherinfo[0].temperature,
+      main: data.weatherinfo[0].main,
+      icon: data.weatherinfo[0].icon,
+      speed: data.weatherinfo[0].speed,
+      humidity: data.weatherinfo[0].humidity,
+      currenttime: data.weatherinfo[0].currenttime,
+      kordate: data.weatherinfo[0].kordate,
+      engdate: data.weatherinfo[0].engdate
+    }]);
+    console.log(data.weatherlist)
+    setValues(data.weatherlist);
+    setGetData(true);
   }, []);
   return (
     <WeatherStateContext.Provider value={[weather, values]}>
