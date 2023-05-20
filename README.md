@@ -3,6 +3,8 @@
 ![Animation](https://github.com/kimgibeom98/react-weather-app/assets/77928818/a29ee023-d60a-49c7-802c-7d6e04b64ca1)
 
  OpenWeatherMap 과 React를 이용해서 만든 날씨 정보 앱입니다. json-server를 이용하여 REST API를 구축하였고 폴더구조를 CRAWL(날씨 데이터 수집), API(날씨 데이터 정보), APP(화면 렌더링)으로 나눠서 관리하였습니다.
+ 
+### URL : https://react-weather-app-alpha-one.vercel.app/
 
 ## 기술 사항
 * 정각마다 날씨 정보 업데이트
